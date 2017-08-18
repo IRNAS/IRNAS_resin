@@ -7,9 +7,8 @@ def main():
 	sensor = MAX1720x.MAX1720x()
 
 	temp =  sensor.get_temperature()
-	print temp
-	print temp/256
-	print hex(temp | (temp << 8))
+	print hex(temp)
+	print (hex(temp) | (hex(temp) << 8)) / 256
 
 	time.sleep(1)
 
