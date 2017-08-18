@@ -6,7 +6,7 @@ import MAX1720x
 def main():
 	sensor = MAX1720x.MAX1720x()
 
-	print sensor.get_voltage()
+	print sensor.get_temperature()
 
 	time.sleep(1)
 
