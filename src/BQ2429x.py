@@ -38,5 +38,5 @@ class BQ2429x(object):
 		self._device = i2c.get_i2c_device(address, **kwargs)
 
 	def get_status(self):
-		#self._device.write8(BQ2429x_ADDR ,BQ2429x_STATUS_ADDR)
+		self._device.write8(BQ2429x_ADDR ,BQ2429x_STATUS_ADDR)
 		return self._device.readU8(BQ2429x_STATUS_ADDR)
