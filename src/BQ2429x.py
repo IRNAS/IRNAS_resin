@@ -16,6 +16,8 @@
 
 # bq2429x register addresses
 
+import time
+
 BQ2429x_ADDR 						= 0x0b;
 BQ2429x_INPUT_CTRL_ADDR 			= 0x00; # Input Source Control Register REG00 [reset = 00110xxx, or 3x]
 BQ2429x_POWERON_CTRL_ADDR 			= 0x01; # Power-On Configuration Register REG01 [reset = 00011011, or 0x1B]
