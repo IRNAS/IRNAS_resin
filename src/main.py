@@ -1,11 +1,13 @@
 import time
 
 import BMP280
+import MAX1720x
 
 def main():
-	sensor = BMP280.BMP280()
-	print "Temperature: " 	+ str(sensor.read_temperature())
-	print "Pressure: " 		+ str(sensor.read_pressure())
+	sensor = MAX1720x.MAX1720x()
+
+	print sensor.get_voltage()
+
 	time.sleep(1)
 
 if __name__ == '__main__':
