@@ -44,4 +44,4 @@ class MAX1720x(object):
 
 	def get_temperature(self):
 		self.bus.write_byte_data(MAX1720X_I2CADDR, MAX1720X_TEMP_ADDR, 0x00)
-		return self.bus.read_byte_data(MAX1720X_I2CADDR,MAX1720X_TEMP_ADDR)
+		return (((self.bus.read_byte_data(MAX1720X_I2CADDR,MAX1720X_TEMP_ADDR)) | (self.bus.read_byte_data(MAX1720X_I2CADDR,MAX1720X_TEMP_ADDR) << 8)) / 256)
