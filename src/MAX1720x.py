@@ -47,7 +47,7 @@ class MAX1720x(object):
 
 	def get_temperature(self):
 		self._device.write8(MAX1720X_COMMAND_ADDR, MAX1720X_TEMP_ADDR)
-		combined = self._device.readRaw8() & (self._device.readRaw8() << 8)
+		combined = self._device.readRaw8() | (self._device.readRaw8() << 8)
 		
 
 		temp = float(combined) / 256

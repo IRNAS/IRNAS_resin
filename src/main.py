@@ -8,6 +8,7 @@ def main():
 
 	temp = sensor.get_temperature()
 	print temp
+	print temp * 256
 
 	time.sleep(1)
 
