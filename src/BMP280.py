@@ -27,7 +27,7 @@ import time
 
 
 # BMP280 default address.
-BMP280_I2CADDR           = 0x77
+BMP280_I2CADDR           = 0x76
 
 # Operating Modes
 BMP280_ULTRALOWPOWER     = 0
