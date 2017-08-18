@@ -9,6 +9,7 @@ def main():
 	temp =  sensor.get_temperature()
 	print "Returned: " + str(temp)
 	print "/256: " + str(temp/256)
+	print "combined" + str(hex(temp | (temp << 8)))
 
 	time.sleep(1)
 

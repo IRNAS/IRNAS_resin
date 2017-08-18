@@ -47,4 +47,4 @@ class MAX1720x(object):
 
 	def get_temperature(self):
 		combined = self._device.readU16(MAX1720X_TEMP_ADDR)
-		return combined
+		return hex(combined)
