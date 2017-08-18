@@ -39,4 +39,5 @@ class BQ2429x(object):
 
 	def get_status(self):
 		self._device.write8(BQ2429x_ADDR ,BQ2429x_STATUS_ADDR)
-		return self._device.readRaw8()
+		time.sleep(0.008)
+		return self._device.readU8(BQ2429x_STATUS_ADDR)
