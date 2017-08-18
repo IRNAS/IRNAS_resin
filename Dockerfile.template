@@ -23,7 +23,7 @@ COPY . ./
 # switch on systemd init system in container
 ENV INITSYSTEM on
 
-ENTRYPOINT ["python","lib/Adafruit_Python_GPIO/setup.py install"]
+ENTRYPOINT ["python","lib/Adafruit_Python_GPIO/setup.py"]
 
 # main.py will run when container starts up on the device
 #CMD ["python","src/main.py"]
