@@ -46,6 +46,5 @@ class MAX1720x(object):
 		return data*0.078125; 
 
 	def get_temperature(self):
-		combined = self._device.readU8(MAX1720X_TEMP_ADDR)|(self._device.readU8(MAX1720X_TEMP_ADDR)<<8)
-		soc = combined
-		return soc/256
+		combined = self._device.readU16(MAX1720X_TEMP_ADDR)
+		return combined
