@@ -15,7 +15,6 @@
 
 import logging
 import time
-import smbus
 
 MAX1720X_I2CADDR = 0x36
 
@@ -36,13 +35,18 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
-		self.bus = smbus.SMBus(1)
+		if i2c is None:
+			import Adafruit_GPIO.I2C as I2C
+			i2c = I2C
+
+		self._device = i2c.get_i2c_device(address, **kwargs)
 
 	def get_voltage(self):
 		data = (self._device.readU8(MAX1720X_VCELL_ADDR)) | (self._device.readU8(MAX1720X_VCELL_ADDR) << 8) 
 		return data*0.078125; 
 
 	def get_temperature(self):
-		self.bus.write_byte(MAX1720X_I2CADDR, MAX1720X_TEMP_ADDR)
-		return (((self.bus.read_byte(MAX1720X_I2CADDR)) | (self.bus.read_byte(MAX1720X_I2CADDR) << 8)) / 256)
-		
+		self._device.write8(MAX1720X_COMMAND_ADDR, MAX1720X_TEMP_ADDR)
+		combined = (self._device.readU8(MAX1720X_TEMP_ADDR) | (self._device.readU8(MAX1720X_TEMP_ADDR)<<8))
+		temp = float(combined) / 256
+		return temp
