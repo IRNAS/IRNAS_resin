@@ -50,5 +50,5 @@ class MAX1720x(object):
 		combined = (self._device.readU8(MAX1720X_TEMP_ADDR) | (self._device.readU8(MAX1720X_TEMP_ADDR)<<8)) / 256
 		'''
 
-		combined = self._device.readU8(MAX1720X_TEMP_ADDR) / 256
+		combined = self._device.readU8(MAX1720X_TEMP_ADDR)
 		return combined
