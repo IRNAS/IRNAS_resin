@@ -17,6 +17,9 @@ COPY ./requirements.txt /requirements.txt
 # pip install python deps from requirements.txt on the resin.io build server
 RUN pip install -r /requirements.txt
 
+RUN apt-get install build-essential python-pip python-dev python-smbus
+RUN cd lib/Adafruit_Python_GPIO/
+RUN python setup.py install
 
 # This will copy all files in our root to the working  directory in the container
 COPY . ./
