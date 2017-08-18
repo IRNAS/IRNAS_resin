@@ -9,6 +9,9 @@ def main():
 	temp =  sensor.get_temperature()
 	print "Returned: " + str(temp)
 	print "/256: " + str(temp/256)
+	combined = temp | (temp << 8)
+	print "combined: " + str(combined)
+	print "combined/256: " + str(combined/256)
 
 	time.sleep(1)
 
