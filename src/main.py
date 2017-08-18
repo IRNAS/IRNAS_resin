@@ -1,13 +1,14 @@
-'''from flask import Flask
-app = Flask(__name__)
+import time
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+import BMP280
+
+def main():
+	sensor = BMP280.BMP280()
+	print sensor.read_temperature()
+	print ""
+	print sensor.read_pressure()
+	time.sleep(1)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)'''
-
-if __name__ == '__main__':
-	print "Hello World!"
+	main()
 
