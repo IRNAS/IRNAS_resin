@@ -49,7 +49,6 @@ class MAX1720x(object):
 		self._device.write8(MAX1720X_COMMAND_ADDR, MAX1720X_TEMP_ADDR)
 		time.sleep(0.008)
 		combined = self._device.readU8(MAX1720X_TEMP_ADDR) | (self._device.readU8(MAX1720X_TEMP_ADDR) << 8)
-		time.sleep(0.008)
 
 		temp = float(combined) / 256
 		return temp
