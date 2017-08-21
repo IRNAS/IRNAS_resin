@@ -9,16 +9,15 @@ def main():
 	#print sensor.get_status()
 
 	print "MAX1720 : cell voltage : " + str(sensor.get_cell_voltage())
-	print "MAX1720 : SOC : " + str(sensor.get_SOC())
 	#rint "MAX1720 : current : " + str(sensor.get_current()) 
 	#print "MAX1720 : temp : " + str(sensor.get_temperature())
 
 	time.sleep(5)
 
 if __name__ == '__main__':
-	
+
 	sensor = MAX1720x.MAX1720x()
-	
+
 	while 1:
 		main()
 

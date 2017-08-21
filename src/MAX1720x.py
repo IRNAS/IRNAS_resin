@@ -51,22 +51,9 @@ class MAX1720x(object):
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
-		self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
+		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		try:
-			return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125
+			return((self._device.readU8(MAX1704X_VCELL_ADDR) << 8) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 8)) * 0.00125
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
-	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
-	def get_SOC(self):
-		try:
-			return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
-		except:
-			print "Couldn't connect to MAX1720"
-			return 0
-	'''def get_current(self):
-		return((self._device.readU8(MAX1704X_CURENT_ADDR) << 4) + (self._device.readU8(MAX1704X_CURENT_ADDR) >> 4)) *0.0015625/0.01 
-
-	def get_temperature(self):
-		return( (self._device.readU8(MAX1704X_TEMP_ADDR) << 4) + (self._device.readU8(MAX1704X_TEMP_ADDR) >> 4) ) / 256
-'''
