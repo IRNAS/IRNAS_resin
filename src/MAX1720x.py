@@ -32,7 +32,7 @@ MAX1704X_COMMAND_ADDR 	= 0xFE;
 MAX17043				= 1
 MAX17044				= 2
 
-_IC 					= MAX17043
+_IC 					= MAX17044
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
