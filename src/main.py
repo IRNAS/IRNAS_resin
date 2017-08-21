@@ -12,7 +12,7 @@ def main():
 	#rint "MAX1720 : current : " + str(sensor.get_current()) 
 	#print "MAX1720 : temp : " + str(sensor.get_temperature())
 
-	time.sleep(5)
+	time.sleep(1)
 
 if __name__ == '__main__':
 
