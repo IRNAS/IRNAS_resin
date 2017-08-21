@@ -15,6 +15,8 @@
 
 import logging
 import time
+import Adafruit_GPIO.I2C as I2C
+i2c = I2C
 
 MAX1720X_I2CADDR = 0x36
 
@@ -40,10 +42,6 @@ _IC 					= MAX17044
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
-		if i2c is None:
-			import Adafruit_GPIO.I2C as I2C
-			i2c = I2C
-
 		try:
 			self._device = i2c.get_i2c_device(address, **kwargs)
 		except:
@@ -53,7 +51,7 @@ class MAX1720x(object):
 	def get_cell_voltage(self):
 		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		try:
-			combined = _device.readU16(MAX1704X_VCELL_ADDR)
+			combined = self._device.readU16(MAX1704X_VCELL_ADDR)
 			value = combined * 0.078125
 			return value	
 
