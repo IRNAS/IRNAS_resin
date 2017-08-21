@@ -41,11 +41,11 @@ MAX17044				= 2
 _IC 					= MAX17044
 
 class MAX1720x(object):
-	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
+	def __init__(self):
 		try:
-			self._device = i2c.get_i2c_device(address, **kwargs)
+			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)
 		except:
-			print "Couldn't connect to MAX1720"
+			print "Couldn't connect to MAX1720 | I2C init"
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
