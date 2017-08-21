@@ -14,7 +14,7 @@ def main():
 	_device.writeRaw8(0x08)
 	lb = _device.readRaw8()
 	mb = _device.readRaw8()
-	combined = (mb << 4) | (lb >> 4)
+	combined = (lb << 4) | (mb >> 8)
 	value = combined / 256
 	print value
 
