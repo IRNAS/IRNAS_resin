@@ -44,17 +44,26 @@ class MAX1720x(object):
 			import Adafruit_GPIO.I2C as I2C
 			i2c = I2C
 
-		self._device = i2c.get_i2c_device(address, **kwargs)
+		try:
+			self._device = i2c.get_i2c_device(address, **kwargs)
+		except:
+			print "Couldn't connect to MAX1720"
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
 		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
-		return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
-
+		try:
+			return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
 	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
 	def get_SOC(self):
-		return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
-
+		try:
+			return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
 	'''def get_current(self):
 		return((self._device.readU8(MAX1704X_CURENT_ADDR) << 4) + (self._device.readU8(MAX1704X_CURENT_ADDR) >> 4)) *0.0015625/0.01 
 
