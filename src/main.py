@@ -11,9 +11,7 @@ address = 0x36
 
 def main():
 
-	_device.writeRaw8(0x16)
 	_device.writeRaw8(0x09)
-	_device.writeRaw8(0x17)
 	lb = _device.readRaw8()
 	mb = _device.readRaw8()
 	combined = lb | (mb << 8)
