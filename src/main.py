@@ -11,8 +11,12 @@ address = 0x36
 
 def main():
 
-	combined = _device.readU16(0x08)
-	value = combined / 256
+	'''combined = _device.readU16(0x08)
+	value = combined / 256'''
+
+	combined = _device.readU16(0x09)
+	value = combined * 0.078125
+
 	print value
 
 	time.sleep(1)
