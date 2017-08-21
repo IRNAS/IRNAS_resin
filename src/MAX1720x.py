@@ -36,7 +36,7 @@ MAX1704X_CONFIG2_ADDR 	= 0xbb; # Command register
 MAX17043				= 1
 MAX17044				= 2
 
-_IC 					= MAX17044
+_IC 					= MAX17043
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
