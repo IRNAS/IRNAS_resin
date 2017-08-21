@@ -20,7 +20,7 @@ MAX1720X_I2CADDR = 0x36
 
 # MAX1704X register addresses
 MAX1704X_STATUS_ADDR 	= 0x00; # Contains alert status and chip status
-MAX1704X_VCELL_ADDR 	= 0x19; # Lowest cell voltage of a pack, or the cell voltage for a single cell
+MAX1704X_VCELL_ADDR 	= 0x09; # Lowest cell voltage of a pack, or the cell voltage for a single cell
 MAX1704X_REPSOC_ADDR 	= 0x06; # Reported state of charge
 MAX1704X_REPCAP_ADDR 	= 0x05; # Reported remaining capacity
 MAX1704X_TEMP_ADDR 		= 0x08; # Temperature
@@ -53,7 +53,7 @@ class MAX1720x(object):
 	def get_cell_voltage(self):
 		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		try:
-			return(self._device.readU8(MAX1704X_VCELL_ADDR)) 
+			return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
