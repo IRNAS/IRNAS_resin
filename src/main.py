@@ -15,7 +15,7 @@ def main():
 	lb = _device.readRaw8()
 	mb = _device.readRaw8()
 	combined = lb | (mb << 8)
-	value = combined * 0.00125 * 2
+	value = combined
 	print value
 
 	time.sleep(1)
