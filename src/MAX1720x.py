@@ -43,4 +43,4 @@ class MAX1720x(object):
 		self._device = i2c.get_i2c_device(address, **kwargs)
 	def get_voltage(self):
 		self._device.writeRaw8(MAX1704X_VCELL_ADDR)
-		return((self._device.readRaw8() << 4) + (self._device.readRaw8() >> 4)) * 0.00125 * _IC
+		return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
