@@ -54,3 +54,6 @@ class MAX1720x(object):
 	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
 	def get_SOC(self):
 		return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
+
+	def get_current(self):
+		return((self._device.readU8(MAX1704X_CURENT_ADDR) << 4) + (self._device.readU8(MAX1704X_CURENT_ADDR) >> 4)) *0.0015625/0.01 
