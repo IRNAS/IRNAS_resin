@@ -48,9 +48,9 @@ class MAX1720x(object):
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
-		#self._device.writeRaw8(MAX1704X_VCELL_ADDR)
+		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
 
 	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
 	def get_SOC(self):
-		print "Getting SOC"
+		return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
