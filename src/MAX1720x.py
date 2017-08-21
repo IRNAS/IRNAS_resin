@@ -19,15 +19,19 @@ import time
 MAX1720X_I2CADDR = 0x36
 
 # MAX1704X register addresses
-MAX1704X_ADDR 			= 0x36;
-MAX1704X_VCELL_ADDR 	= 0x09;
-MAX1704X_SOC_ADDR 		= 0x04;
-MAX1704X_MODE_ADDR 		= 0x06;
-MAX1704X_VERSION_ADDR 	= 0x08;
-MAX1704X_CONFIG_ADDR 	= 0x0C;
-MAX1704X_RCOMP_ADDR 	= 0x0C;
-MAX1704X_ATHRD_ADDR 	= 0x0D;
-MAX1704X_COMMAND_ADDR 	= 0xFE;
+MAX1720X_STATUS_ADDR 	= 0x00; # Contains alert status and chip status
+MAX1720X_VCELL_ADDR 	= 0x09; # Lowest cell voltage of a pack, or the cell voltage for a single cell
+MAX1720X_REPSOC_ADDR 	= 0x06; # Reported state of charge
+MAX1720X_REPCAP_ADDR 	= 0x05; # Reported remaining capacity
+MAX1720X_TEMP_ADDR 		= 0x08; # Temperature
+MAX1720X_CURENT_ADDR 	= 0x0A; # Battery current
+MAX1720X_TTE_ADDR 		= 0x11; # Time to empty
+MAX1720X_TTF_ADDR 		= 0x20; # Time to full
+MAX1720X_CAPACITY_ADDR 	= 0x10; # Full capacity estimation
+MAX1720X_VBAT_ADDR 		= 0xDA; # Battery pack voltage
+MAX1720X_AVCELL_ADDR 	= 0x17; # Battery cycles
+MAX1720X_COMMAND_ADDR 	= 0x60; # Command register
+MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 
 MAX17043				= 1
 MAX17044				= 2
@@ -49,4 +53,4 @@ class MAX1720x(object):
 
 	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
 	def get_SOC(self):
-
+		print "Getting SOC"
