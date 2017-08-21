@@ -41,6 +41,12 @@ class MAX1720x(object):
 			i2c = I2C
 
 		self._device = i2c.get_i2c_device(address, **kwargs)
-	def get_voltage(self):
-		self._device.writeRaw8(MAX1704X_VCELL_ADDR)
+
+	# def get_cell_voltage(self) - gets a cell voltage (~3V)
+	def get_cell_voltage(self):
+		#self._device.writeRaw8(MAX1704X_VCELL_ADDR)
 		return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC
+
+	# def get_SOC(self) - returns the relative state of charge of the connected LiIon Polymer battery (as a percentage of the full capacity w/ resolution 1/256%)
+	def get_SOC(self):
+

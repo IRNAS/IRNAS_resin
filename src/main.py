@@ -9,7 +9,8 @@ def main():
 	#print sensor.get_status()
 
 	sensor = MAX1720x.MAX1720x()
-	print sensor.get_voltage()
+	print "MAX1720 : cell voltage : " + str(sensor.get_cell_voltage())
+	
 
 	time.sleep(1)
 
