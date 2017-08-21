@@ -36,7 +36,7 @@ MAX1704X_CONFIG2_ADDR 	= 0xbb; # Command register
 MAX17043				= 1
 MAX17044				= 2
 
-_IC 					= MAX17043
+_IC 					= MAX17044
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
@@ -55,8 +55,9 @@ class MAX1720x(object):
 	def get_SOC(self):
 		return(self._device.readU8(MAX1704X_REPSOC_ADDR) + self._device.readU8(MAX1704X_REPSOC_ADDR) / 256)
 
-	def get_current(self):
+	'''def get_current(self):
 		return((self._device.readU8(MAX1704X_CURENT_ADDR) << 4) + (self._device.readU8(MAX1704X_CURENT_ADDR) >> 4)) *0.0015625/0.01 
 
 	def get_temperature(self):
 		return( (self._device.readU8(MAX1704X_TEMP_ADDR) << 4) + (self._device.readU8(MAX1704X_TEMP_ADDR) >> 4) ) / 256
+'''
