@@ -53,7 +53,10 @@ class MAX1720x(object):
 	def get_cell_voltage(self):
 		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		try:
-			return((self._device.readU8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readU8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC;
+			combined = _device.readU16(MAX1704X_VCELL_ADDR)
+			value = combined * 0.078125
+			return value	
+
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
