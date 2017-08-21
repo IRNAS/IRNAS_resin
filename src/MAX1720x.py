@@ -57,3 +57,6 @@ class MAX1720x(object):
 
 	def get_current(self):
 		return((self._device.readU8(MAX1704X_CURENT_ADDR) << 4) + (self._device.readU8(MAX1704X_CURENT_ADDR) >> 4)) *0.0015625/0.01 
+
+	def get_temperature(self):
+		return( (self._device.readU8(MAX1704X_TEMP_ADDR) << 4) + (self._device.readU8(MAX1704X_TEMP_ADDR) >> 4) ) / 256
