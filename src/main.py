@@ -12,7 +12,9 @@ address = 0x36
 def main():
 
 	_device.writeRaw8(0x08)
-	combined = _device.readRaw8()
+	lb = _device.readRaw8()
+	mb = _device.readRaw8()
+	combined = (lb << 4) | (mb >> 4)
 	value = combined / 256
 	print value
 
