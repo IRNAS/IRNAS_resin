@@ -20,7 +20,7 @@ MAX1720X_I2CADDR = 0x36
 
 # MAX1704X register addresses
 MAX1704X_STATUS_ADDR 	= 0x00; # Contains alert status and chip status
-MAX1704X_VCELL_ADDR 	= 0x09; # Lowest cell voltage of a pack, or the cell voltage for a single cell
+MAX1704X_VCELL_ADDR 	= 0x19; # Lowest cell voltage of a pack, or the cell voltage for a single cell
 MAX1704X_REPSOC_ADDR 	= 0x06; # Reported state of charge
 MAX1704X_REPCAP_ADDR 	= 0x05; # Reported remaining capacity
 MAX1704X_TEMP_ADDR 		= 0x08; # Temperature
