@@ -18,20 +18,21 @@ import time
 
 MAX1720X_I2CADDR = 0x36
 
-# MAX1720X register addresses
-MAX1720X_STATUS_ADDR 	= 0x00; # Contains alert status and chip status
-MAX1720X_VCELL_ADDR 	= 0x09; # Lowest cell voltage of a pack, or the cell voltage for a single cell
-MAX1720X_REPSOC_ADDR 	= 0x06; # Reported state of charge
-MAX1720X_REPCAP_ADDR 	= 0x05; # Reported remaining capacity
-MAX1720X_TEMP_ADDR 		= 0x08; # Temperature
-MAX1720X_CURENT_ADDR 	= 0x0A; # Battery current
-MAX1720X_TTE_ADDR 		= 0x11; # Time to empty
-MAX1720X_TTF_ADDR 		= 0x20; # Time to full
-MAX1720X_CAPACITY_ADDR 	= 0x10; # Full capacity estimation
-MAX1720X_VBAT_ADDR 		= 0xDA; # Battery pack voltage
-MAX1720X_AVCELL_ADDR 	= 0x17; # Battery cycles
-MAX1720X_COMMAND_ADDR 	= 0x60; # Command register
-MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
+# MAX1704X register addresses
+MAX1704X_ADDR 			= 0x36;
+MAX1704X_VCELL_ADDR 	= 0x02;
+MAX1704X_SOC_ADDR 		= 0x04;
+MAX1704X_MODE_ADDR 		= 0x06;
+MAX1704X_VERSION_ADDR 	= 0x08;
+MAX1704X_CONFIG_ADDR 	= 0x0C;
+MAX1704X_RCOMP_ADDR 	= 0x0C;
+MAX1704X_ATHRD_ADDR 	= 0x0D;
+MAX1704X_COMMAND_ADDR 	= 0xFE;
+
+MAX17043				= 1
+MAX17044				= 2
+
+_IC 					= MAX17043
 
 class MAX1720x(object):
 	def __init__(self, address=MAX1720X_I2CADDR, i2c=None, **kwargs):
@@ -40,14 +41,6 @@ class MAX1720x(object):
 			i2c = I2C
 
 		self._device = i2c.get_i2c_device(address, **kwargs)
-
-	def get_voltage(self):
-		data = (self._device.readU8(MAX1720X_VCELL_ADDR)) | (self._device.readU8(MAX1720X_VCELL_ADDR) << 8) 
-		return data*0.078125; 
-
-	def get_temperature(self):
-		time.sleep(0.0008)
-		combined = self._device.readU8(MAX1720X_TEMP_ADDR) | (self._device.readU8(MAX1720X_TEMP_ADDR) << 8)
-		time.sleep(0.0008)
-		temp = float(combined) / 256
-		return temp
+	def get_voltage():
+		self._device.writeRaw8(MAX1704X_VCELL_ADDR)
+		return((self._device.readRaw8(MAX1704X_VCELL_ADDR) << 4) + (self._device.readRaw8(MAX1704X_VCELL_ADDR) >> 4)) * 0.00125 * _IC

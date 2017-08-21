@@ -9,7 +9,7 @@ def main():
 	#print sensor.get_status()
 
 	sensor = MAX1720x.MAX1720x()
-	print sensor.get_temperature()
+	print sensor.get_voltage()
 
 	time.sleep(1)
 
