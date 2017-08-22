@@ -82,7 +82,7 @@ class BQ2429x(object):
 		except:
 			print "Couldn't connect to BQ2429x | I2C init"
 
-	# def get_status(self) - it gets the status of the sensor (0-255)
+	# def get_status(self, type_of_status) - gets the type of status you request
 	def get_status(self, type_of_status):
 		try:
 			# reading it 0-255
@@ -116,7 +116,7 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
-	# def get_faults(self) - it gets the faults of the sensor (0-255)
+	# def get_faults(self, type_of_fault) - gets the type of fault you request
 	def get_faults(self, type_of_fault):
 		try:
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# reading the fault register
