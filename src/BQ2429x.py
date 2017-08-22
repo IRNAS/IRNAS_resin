@@ -73,7 +73,7 @@ class BQ2429x(object):
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
 			new_value = current_value		# here we should set it new_value = current
 			print "Value: " + str(new_value)
-			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
+			#self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
