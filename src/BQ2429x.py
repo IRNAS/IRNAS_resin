@@ -149,9 +149,10 @@ class BQ2429x(object):
 		try:
 			value = self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR)									
 			
-			binary_value = bin(value)[2:]		
+			#binary_value = bin(value)[2:]		
 
-			return binary_value														
+			#return binary_value	
+			return hex(value)													
 		
 		except:
 			print "Couldn't connect to BQ2429x"
