@@ -72,9 +72,7 @@ class BQ2429x(object):
 
 			# convert to byte array and remove the 0b part
 			binary_value = bin(value)[2:]
-
-			print binary_value
-
+			
 			if type_of_status == VSYS_STAT:
 				return vsys_data[binary_value[0]]
 
