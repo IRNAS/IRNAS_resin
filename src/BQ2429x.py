@@ -13,12 +13,9 @@
  * Filename: bq2429x.py
  * File description: Definitions and methods for the bq2429x library
 ''' 
-
-# bq2429x register addresses
-
 import time
 
-BQ2429x_ADDR 						= 0x0b;
+BQ2429x_I2CADDR 					= 0x0b;
 BQ2429x_INPUT_CTRL_ADDR 			= 0x00; # Input Source Control Register REG00 [reset = 00110xxx, or 3x]
 BQ2429x_POWERON_CTRL_ADDR 			= 0x01; # Power-On Configuration Register REG01 [reset = 00011011, or 0x1B]
 BQ2429x_CHARGE_CUR_CTRL_ADDR 		= 0x02; # Charge Current Control Register REG02 [reset = 01100000, or 60]
@@ -32,14 +29,16 @@ BQ2429x_FAULT_ADDR 					= 0x09; # New Fault Register REG09
 BQ2429x_VENDOR_ADDR 				= 0x0A; #/ Vender / Part / Revision Status Register REG0A
 
 class BQ2429x(object):
-	def __init__(self, address=BQ2429x_ADDR, i2c=None, **kwargs):
-		if i2c is None:
-			import Adafruit_GPIO.I2C as I2C
-			i2c = I2C
-
-		self._device = i2c.get_i2c_device(address, **kwargs)
+	def __init__(self):
+		try:
+			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)
+		except:
+			print "Couldn't connect to BQ2429x | I2C init"
 
 	def get_status(self):
-		self._device.write8(BQ2429x_ADDR ,BQ2429x_STATUS_ADDR)
-		time.sleep(0.008)
-		return self._device.readU8(BQ2429x_STATUS_ADDR)
+		try:
+			value = self._device.readU8(BQ2429x_STATUS_ADDR)
+			return value
+		except:
+			print "Couldn't connect to BQ2429x"
+			return 0

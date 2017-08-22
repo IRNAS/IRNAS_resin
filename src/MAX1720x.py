@@ -121,4 +121,3 @@ class MAX1720x(object):
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
-
