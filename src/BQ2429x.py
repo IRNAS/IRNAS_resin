@@ -43,19 +43,36 @@ BQ2429x_STATUS_ADDR 				= 0x08 # System Status Register REG08
 BQ2429x_FAULT_ADDR 					= 0x09 # New Fault Register REG09
 BQ2429x_VENDOR_ADDR 				= 0x0A #/ Vender / Part / Revision Status Register REG0A
 
+# indentifications for the register values
 VBUS_STAT							= 5
-CHRG_STAT							= 4
-DPM_STAT							= 3
-PG_STAT								= 2
-THERM_STAT							= 1
-VSYS_STAT							= 0
+CHRG_STAT, WATCHDOG_FAULT			= 4
+DPM_STAT, BOOST_FAULT				= 3
+PG_STAT, CHRG_FAULT					= 2
+THERM_STAT, BAT_FAULT				= 1
+VSYS_STAT, NTC_FAULT				= 0
 
+# status register values
 vsys_data 	= { '0' : "BAT > VSYSMIN", '1' : "BAT < VSYSMIN" }
-therm_data 	= { '0' : "Normal status" ,  '1' : "In thermal regulation"}
-pg_data 	= {'0' : "Not good power", '1' : "Power good"}
-dpm_data 	= {'0' : "Not DPM", '1' : "VINDPM or IINDPM"}
-chrg_data 	= {"00" : "Not charging", "01" : "Pre-charger", "10" : "Fast charging", "11" : "Charge termination done"}
-vbus_data 	= {"00" : "No input", "01" : "USB host", "10" : "Adapter port", "11" : "OTG"}
+therm_data 	= { '0' : "Normal status" ,  '1' : "In thermal regulation" }
+pg_data 	= { '0' : "Not good power", '1' : "Power good" }
+dpm_data 	= { '0' : "Not DPM", '1' : "VINDPM or IINDPM" }
+chrg_data 	= { "00" : "Not charging", "01" : "Pre-charger", "10" : "Fast charging", "11" : "Charge termination done" }
+vbus_data 	= { "00" : "No input", "01" : "USB host", "10" : "Adapter port", "11" : "OTG" }
+
+# fault register values
+ntc_data		= {
+	"000" : "Normal",
+	"001" : "TS1 Cold",
+	"010" : "TS1 Hot",
+	"011" : "TS2 Cold",
+	"100" : "TS2 Hot",
+	"101" : "Both Cold",
+	"110" : "Both Hot"
+}
+bat_data		= { '0' : "Normal", '1' : "BatOVP" }
+chrg_fault_data = { "00" : "Normal", "01" : "Input fault (VBUS OVP or VBAT<VBUS<3.8V)","10" : "Thermal shutdown","11" : "Charge Safety Timer Expiration" }
+boost_data 		= { '0' : "Normal", '1' : "VBUS overloaded or VBUS OVP in boost mode" }
+watchdog_data	= { '0' : "Normal", '1' : "Watchdog timer expiration" }
 
 class BQ2429x(object):
 	def __init__(self):
@@ -99,13 +116,25 @@ class BQ2429x(object):
 			return 0
 
 	# def get_faults(self) - it gets the faults of the sensor (0-255)
-	def get_faults(self):
+	def get_faults(self, type_of_fault):
 		try:
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# reading the fault register
 			
 			binary_value = bin(value)[2:]																# returning it
 		
-			return binary_value
+			if type_of_fault == NTC_FAULT:
+				_stat = str(binary_value[0]) + str(binary_value[1]) + str(binary_value[2])
+				return ntc_data[_stat]
+			elif type_of_fault == BAT_FAULT:
+				return bat_data[binary_value[3]]
+			elif type_of_fault == CHRG_FAULT:
+				_stat = str(binary_value[4]) + str(binary_value[5])
+				return chrg_fault_data[_stat]
+			elif type_of_fault == BOOST_FAULT:
+				return boost_data[binary_value[6]]
+			elif type_of_fault == WATCHDOG_FAULT:
+				return watchdog_data[binary_value[7]]
+
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0

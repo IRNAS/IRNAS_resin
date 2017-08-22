@@ -21,7 +21,7 @@ def main():
 	#sensor_bq.set_input_current_limit(0)
 	#sensor_max.get_cell_voltage(1)
 
-	#print "-----------------------------------------------"
+	print "-----------------------------------------------"
 	#print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	#print "BQ2429x : status - THERM_STAT : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	#print "BQ2429x : status - PG_STAT : " + str(sensor_bq.get_status(BQ2429x.PG_STAT))
@@ -29,8 +29,7 @@ def main():
 	#print "BQ2429x : status - CHRG_STAT : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
 	#print "BQ2429x : status - VBUS_STAT : " + str(sensor_bq.get_status(BQ2429x.VBUS_STAT))
 
-
-	print str(sensor_bq.get_faults())
+	print "BQ2429x : fault - NTC_FAULT : " + str(sensor_bq.get_faults(BQ2429x.NTC_FAULT))
 
 	time.sleep(1)
 
