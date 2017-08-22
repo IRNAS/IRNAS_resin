@@ -21,7 +21,10 @@ def main():
 	#sensor_bq.set_charge_current(0)
 	#sensor_bq.set_input_current_limit(0)
 
-	print sensor_max.get_cell_1()
+	print sensor_max.get_cell_voltage(1)
+	print sensor_max.get_cell_voltage(2)
+	print sensor_max.get_cell_voltage(3)
+	print sensor_max.get_cell_voltage(4)
 
 
 	time.sleep(1)

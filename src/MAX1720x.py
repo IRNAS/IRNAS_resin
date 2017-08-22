@@ -122,6 +122,12 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
-	def get_cell_1(self):
-		value = self._device.readU16(0xD8)
-		return float(value * 0.078125)
+	def get_cell_voltage(self, number):
+
+		cell_register_num = [0xD8, 0xD7, 0xD6, 0xD5]
+
+		if(number < 5 and number > 0):
+			value = self._device.readU16(cell_register_num[number - 1])
+			return float(value * 0.078125)
+		else:
+			return "1-4 cell numbers!"
