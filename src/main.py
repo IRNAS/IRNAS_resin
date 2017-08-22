@@ -27,7 +27,7 @@ def main():
 	print "BQ2429x : status - PG_STAT : " + str(sensor_bq.get_status(BQ2429x.PG_STAT))
 	print "BQ2429x : status - DPM_STAT : " + str(sensor_bq.get_status(BQ2429x.DPM_STAT))
 	print "BQ2429x : status - CHRG_STAT : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
-
+	print "BQ2429x : status - VBUS_STAT : " + str(sensor_bq.get_status(BQ2429x.VBUS_STAT))
 
 
 	time.sleep(1)

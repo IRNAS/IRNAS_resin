@@ -68,7 +68,8 @@ class BQ2429x(object):
 	def get_status(self, type_of_status):
 		try:
 			# reading it 0-255
-			value = self._device.readU8(BQ2429x_STATUS_ADDR)								
+			value = self._device.readU8(BQ2429x_STATUS_ADDR)	
+										
 			# convert to byte array and remove the 0b part
 			binary_value = bin(value)[2:]
 
