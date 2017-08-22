@@ -11,6 +11,7 @@ def main():
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
 	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
 	print "MAX1720x : capacity : " + str(sensor_max.get_capacity())
+	print "MAX1720x : TTE : " + str(sensor_max.get_TTE())
 	time.sleep(1)
 
 if __name__ == '__main__':

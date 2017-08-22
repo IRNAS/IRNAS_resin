@@ -63,6 +63,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_temperature(self) - getting the chip (surroundings) temperature
 	def get_temperature(self):
 		try:
 			combined = self._device.readU16(MAX1720X_TEMP_ADDR)
@@ -72,6 +73,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_SOC(self) - the relative state of charge of the connected LiIon Polymer battery as a percentage of the full capacity w/ resolution 1/256%
 	def get_SOC(self):
 		try:
 			combined = self._device.readU16(MAX1720X_REPSOC_ADDR)
@@ -81,6 +83,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_capacity(self) - RepCap or reported capacity is a filtered version of the AvCap register that prevents large jumps in the reported value caused by changes in the application such as abrupt changes in temperature or load current.
 	def get_capacity(self):
 		try:
 			combined = self._device.readU16(MAX1720X_REPCAP_ADDR)
@@ -90,4 +93,12 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	def get_TTE(self):
+		try:
+			combined  = self._device.readU16(MAX1720X_TTE_ADDR)
+			value = combined * 5.625
+			return value
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
 	
