@@ -62,11 +62,14 @@ class BQ2429x(object):
 		try:
 			# reading it 0-255
 			value = self._device.readU8(BQ2429x_STATUS_ADDR)								
-			# convert to byte array
+			# convert to byte array and remove the 0b part
 			binary_value = bin(value)[2:]
 
 			if type_of_status == VSYS_STAT:
-				print "vsys"
+				if binary_value[0] == 0:
+					return "BAT > VSYSMIN"
+				else:
+					return "BAT < VSYSMIN"
 
 		except:
 			print "Couldn't connect to BQ2429x"

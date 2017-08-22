@@ -2,7 +2,7 @@ import time
 
 import BMP280
 import MAX1720x
-from BQ2429x import *
+import BQ2429x
 
 def main():
 	'''
@@ -21,7 +21,7 @@ def main():
 	#sensor_bq.set_input_current_limit(0)
 	#sensor_max.get_cell_voltage(1)
 
-	print "BQ2429x : status : " + str(sensor_bq.get_status(VSYS_STAT))
+	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 
 
 
