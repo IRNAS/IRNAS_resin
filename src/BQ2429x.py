@@ -102,7 +102,10 @@ class BQ2429x(object):
 	def get_faults(self):
 		try:
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# reading the fault register
-			return value 																	# returning it
+			
+			binary_value = bin(value)[2:]																# returning it
+		
+			return binary_value
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
