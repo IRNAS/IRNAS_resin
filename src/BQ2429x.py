@@ -50,6 +50,9 @@ PG_STAT								= 2
 THERM_STAT							= 1
 VSYS_STAT							= 0
 
+vsys_data = {0 : "BAT > VSYSMIN", 1 : "BAT < VSYSMIN"}
+
+
 class BQ2429x(object):
 	def __init__(self):
 		try:
@@ -66,26 +69,26 @@ class BQ2429x(object):
 			binary_value = bin(value)[2:]
 
 			if type_of_status == VSYS_STAT:
-				return {
-					0 : "BAT > VSYSMIN",
-					1 : "BAT < VSYSMIN"
-				}[binary_value[0]]()
+				return vsys_data[binary_value[0]]
 
 			elif type_of_status == THERM_STAT:
 				if binary_value[1] == 0:
 					return "Normal status"
 				else:
 					return "In thermal regulation"
+
 			elif type_of_status == PG_STAT:
 				if binary_value[2] == 0:
 					return "Not good power"
 				else:
 					return "Power good"
+
 			elif type_of_status == DPM_STAT:
 				if binary_value[3] == 0:
 					return "Not DPM"
 				else:
 					return "VINDPM or IINDPM"
+
 			elif type_of_status == CHRG_STAT:
 				_stat = str(binary_value[4]) + str(binary_value[5])
 				if _stat == "00":
