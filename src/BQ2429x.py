@@ -31,7 +31,7 @@ BQ2429x_VENDOR_ADDR 				= 0x0A; #/ Vender / Part / Revision Status Register REG0
 class BQ2429x(object):
 	def __init__(self):
 		try:
-			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)
+			self._device = i2c.get_i2c_device(BQ2429x_I2CADDR)
 		except:
 			print "Couldn't connect to BQ2429x | I2C init"
 
