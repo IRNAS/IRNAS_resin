@@ -21,7 +21,7 @@ def main():
 	#sensor_bq.set_charge_current(0)
 	#sensor_bq.set_input_current_limit(0)
 
-	print sensor_max.get_pack_voltage()
+	print sensor_max.get_cell_1()
 
 
 	time.sleep(1)
