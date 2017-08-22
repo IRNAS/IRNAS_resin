@@ -45,3 +45,11 @@ class BQ2429x(object):
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
+
+	def get_faults(self):
+		try:
+			value = self._device.readU8(BQ2429x_FAULT_ADDR)
+			return value
+		except:
+			print "Couldn't connect to BQ2429x"
+			return 0

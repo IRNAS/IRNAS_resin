@@ -17,7 +17,7 @@ def main():
 	print "MAX1720x : status : " + str(sensor_max.get_status())'''
 
 	print sensor_bq.get_status()
-
+	print sensor_bq.get_faults()
 	time.sleep(1)
 
 if __name__ == '__main__':
