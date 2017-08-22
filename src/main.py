@@ -6,7 +6,7 @@ import BQ2429x
 
 def main():
 
-	print "MAX1720x : cell voltage : " + sensor_max.get_cell_voltage()
+	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage())
 
 	time.sleep(1)
 

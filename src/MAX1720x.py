@@ -44,7 +44,6 @@ class MAX1720x(object):
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
-		#self._device.writeRaw8(MAX1704X_VCELL_ADDR) 	# no need for this really, but we will keep it
 		try:
 			combined = self._device.readU16(MAX1704X_VCELL_ADDR)
 			value = combined * 0.078125
