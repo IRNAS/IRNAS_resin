@@ -43,14 +43,14 @@ BQ2429x_STATUS_ADDR 				= 0x08 # System Status Register REG08
 BQ2429x_FAULT_ADDR 					= 0x09 # New Fault Register REG09
 BQ2429x_VENDOR_ADDR 				= 0x0A #/ Vender / Part / Revision Status Register REG0A
 
-class BQ2429x(object):
-	self.VBUS_STAT							= 5
-	self.CHRG_STAT							= 4
-	self.DPM_STAT							= 3
-	self.PG_STAT							= 2
-	self.THERM_STAT							= 1
-	self.VSYS_STAT							= 0
+VBUS_STAT							= 5
+CHRG_STAT							= 4
+DPM_STAT							= 3
+PG_STAT								= 2
+THERM_STAT							= 1
+VSYS_STAT							= 0
 
+class BQ2429x(object):
 	def __init__(self):
 		try:
 			self._device = i2c.get_i2c_device(BQ2429x_I2CADDR)								# connect to the device
@@ -65,8 +65,8 @@ class BQ2429x(object):
 			# convert to byte array
 			binary_value = bin(value)[2:]
 
-			if type_of_status == self.VSYS_STAT:
-				return "vsys"
+			if type_of_status == VSYS_STAT:
+				print "vsys"
 
 		except:
 			print "Couldn't connect to BQ2429x"
