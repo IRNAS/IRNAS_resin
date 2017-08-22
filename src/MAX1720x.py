@@ -121,3 +121,12 @@ class MAX1720x(object):
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
+
+	def get_pack_voltage(self):
+		try:
+			combined = self._device.readU16(MAX1720X_VBAT_ADDR)
+			value = combined * 0.078125
+			return value
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
