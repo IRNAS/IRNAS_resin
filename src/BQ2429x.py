@@ -30,18 +30,25 @@ import time
 import Adafruit_GPIO.I2C as I2C
 i2c = I2C
 
-BQ2429x_I2CADDR 					= 0x0b;
-BQ2429x_INPUT_CTRL_ADDR 			= 0x00; # Input Source Control Register REG00 [reset = 00110xxx, or 3x]
-BQ2429x_POWERON_CTRL_ADDR 			= 0x01; # Power-On Configuration Register REG01 [reset = 00011011, or 0x1B]
-BQ2429x_CHARGE_CUR_CTRL_ADDR 		= 0x02; # Charge Current Control Register REG02 [reset = 01100000, or 60]
-BQ2429x_PRECHARGE_CTRL_ADDR 		= 0x03; # Pre-Charge/Termination Current Control Register REG03 [reset = 00010001, or 0x11]
-BQ2429x_CHARGE_VOL_CTRL_ADDR 		= 0x04; # Charge Voltage Control Register REG04 [reset = 10110010, or 0xB2]
-BQ2429x_CHARGE_TERM_CTRL_ADDR 		= 0x05; # Charge Termination/Timer Control Register REG05 [reset = 10011010, or 0x9A]
-BQ2429x_BOOST_THERMAL_CTRL_ADDR 	= 0x06; # Boost Voltage/Thermal Regulation Control Register REG06 [reset = 01110011, or 0x73]
-BQ2429x_MISC_CTRL_ADDR 				= 0x07; # Misc Operation Control Register REG07 [reset = 01001011, or 4B]
-BQ2429x_STATUS_ADDR 				= 0x08; # System Status Register REG08
-BQ2429x_FAULT_ADDR 					= 0x09; # New Fault Register REG09
-BQ2429x_VENDOR_ADDR 				= 0x0A; #/ Vender / Part / Revision Status Register REG0A
+BQ2429x_I2CADDR 					= 0x0b
+BQ2429x_INPUT_CTRL_ADDR 			= 0x00 # Input Source Control Register REG00 [reset = 00110xxx, or 3x]
+BQ2429x_POWERON_CTRL_ADDR 			= 0x01 # Power-On Configuration Register REG01 [reset = 00011011, or 0x1B]
+BQ2429x_CHARGE_CUR_CTRL_ADDR 		= 0x02 # Charge Current Control Register REG02 [reset = 01100000, or 60]
+BQ2429x_PRECHARGE_CTRL_ADDR 		= 0x03 # Pre-Charge/Termination Current Control Register REG03 [reset = 00010001, or 0x11]
+BQ2429x_CHARGE_VOL_CTRL_ADDR 		= 0x04 # Charge Voltage Control Register REG04 [reset = 10110010, or 0xB2]
+BQ2429x_CHARGE_TERM_CTRL_ADDR 		= 0x05 # Charge Termination/Timer Control Register REG05 [reset = 10011010, or 0x9A]
+BQ2429x_BOOST_THERMAL_CTRL_ADDR 	= 0x06 # Boost Voltage/Thermal Regulation Control Register REG06 [reset = 01110011, or 0x73]
+BQ2429x_MISC_CTRL_ADDR 				= 0x07 # Misc Operation Control Register REG07 [reset = 01001011, or 4B]
+BQ2429x_STATUS_ADDR 				= 0x08 # System Status Register REG08
+BQ2429x_FAULT_ADDR 					= 0x09 # New Fault Register REG09
+BQ2429x_VENDOR_ADDR 				= 0x0A #/ Vender / Part / Revision Status Register REG0A
+
+VBUS_STAT							= 5
+CHRG_STAT							= 4
+DPM_STAT							= 3
+PG_STAT								= 2
+THERM_STAT							= 1
+VSYS_STAT							= 0
 
 class BQ2429x(object):
 	def __init__(self):
@@ -51,13 +58,16 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x | I2C init"
 
 	# def get_status(self) - it gets the status of the sensor (0-255)
-	def get_status(self):
+	def get_status(self, type_of_status):
 		try:
 			# reading it 0-255
 			value = self._device.readU8(BQ2429x_STATUS_ADDR)								
 			# convert to byte array
-			#return value.bin[2:]
-			return bin(value)
+			binary_value = bin(value)[2:]
+
+			return {
+				VSYS_STAT : binary_value[0] 
+			}[type_of_status]
 
 		except:
 			print "Couldn't connect to BQ2429x"
