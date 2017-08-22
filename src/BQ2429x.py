@@ -50,8 +50,12 @@ PG_STAT								= 2
 THERM_STAT							= 1
 VSYS_STAT							= 0
 
-vsys_data = {'0' : "BAT > VSYSMIN", '1' : "BAT < VSYSMIN"}
-
+vsys_data 	= { '0' : "BAT > VSYSMIN", '1' : "BAT < VSYSMIN" }
+therm_data 	= { '0' : "Normal status" ,  '1' : "In thermal regulation"}
+pg_data 	= {'0' : "Not good power", '1' : "Power good"}
+dpm_data 	= {'0' : "Not DPM", '1' : "VINDPM or IINDPM"}
+chrg_data 	= {"00" : "Not charging", "01" : "Pre-charger", "10" : "Fast charging", "11" : "Charge termination done"}
+vbus_data 	= {"00" : "No input", "01" : "USB host", "10" : "Adapter port", "11" : "OTG"}
 
 class BQ2429x(object):
 	def __init__(self):
@@ -72,43 +76,21 @@ class BQ2429x(object):
 				return vsys_data[binary_value[0]]
 
 			elif type_of_status == THERM_STAT:
-				if binary_value[1] == 0:
-					return "Normal status"
-				else:
-					return "In thermal regulation"
+				return therm_data[binary_value[1]]
 
 			elif type_of_status == PG_STAT:
-				if binary_value[2] == 0:
-					return "Not good power"
-				else:
-					return "Power good"
+				return pg_data[binary_value[2]]
 
 			elif type_of_status == DPM_STAT:
-				if binary_value[3] == 0:
-					return "Not DPM"
-				else:
-					return "VINDPM or IINDPM"
+				return dpm_data[binary_value[3]]
 
 			elif type_of_status == CHRG_STAT:
 				_stat = str(binary_value[4]) + str(binary_value[5])
-				if _stat == "00":
-					return "Not charging"
-				elif _stat == "01":
-					return "Pre-charger"
-				elif _stat == "10":
-					return "Fast charging"
-				elif _stat == "11":
-					return "Charge termination done"
+				return chrg_data[_stat]
+
 			elif type_of_status == VBUS_STAT:
 				_stat = str(binary_value[6]) + str(binary_value[7])
-				if _stat == "00":
-					return "No input"
-				elif _stat == "01":
-					return "USB host"
-				elif _stat == "10":
-					return "Adapter port"
-				elif _stat == "11":
-					return "OTG"
+				return vbus_data[_stat]
 
 
 		except:
