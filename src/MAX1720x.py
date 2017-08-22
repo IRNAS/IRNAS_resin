@@ -81,4 +81,13 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	def get_capacity(self):
+		try:
+			combined = self._device.readU16(MAX1720X_REPCAP_ADDR)
+			value = combined * 0.005 / 0.01
+			return value
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
 	
