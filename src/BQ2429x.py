@@ -13,6 +13,18 @@
  * Filename: bq2429x.py
  * File description: Definitions and methods for the bq2429x library
 ''' 
+
+'''
+From datasheet
+
+Default VINDPM 					4.44V
+Default Battery Voltage 		4.112V
+Default Charge Current 			1.024A
+Default Adapter Current Limit 	1.5A
+Maximum Pre-charge Current 		640mA
+
+'''
+
 import logging
 import time
 import Adafruit_GPIO.I2C as I2C
@@ -38,6 +50,7 @@ class BQ2429x(object):
 		except:
 			print "Couldn't connect to BQ2429x | I2C init"
 
+	# def get_status(self) - it gets the status of the sensor (0-255)
 	def get_status(self):
 		try:
 			value = self._device.readU8(BQ2429x_STATUS_ADDR)
@@ -46,10 +59,21 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
+	# def get_faults(self) - it gets the faults of the sensor (0-255)
 	def get_faults(self):
 		try:
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)
 			return value
+		except:
+			print "Couldn't connect to BQ2429x"
+			return 0
+
+	def set_charge_voltage(self):
+		try:
+			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
+			new_value = current_value		# here we should set it new_value = current
+			print "Value: " + str(new_value)
+			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0

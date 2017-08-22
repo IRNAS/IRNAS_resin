@@ -18,6 +18,7 @@ def main():
 
 	print sensor_bq.get_status()
 	print sensor_bq.get_faults()
+	print sensor_bq.set_charge_voltage()
 	time.sleep(1)
 
 if __name__ == '__main__':
