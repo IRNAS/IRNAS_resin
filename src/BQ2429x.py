@@ -68,12 +68,22 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
-	def set_charge_voltage(self):
+	def set_charge_voltage(self, current):
+
+		# for default we are getting 245, if we calculate it as the default voltage
+		# which is 4,112V than 255 is 4,279V
+
 		try:
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
 			new_value = current_value		# here we should set it new_value = current
-			print "Value: " + str(new_value)
-			#self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
+			print "BQ2429x : Setting new charge voltage to: " + str(new_value)
+			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
+			check_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
+			if new_value == check_value:
+				print "Everything okay"
+			else:
+				print "ERROR"
+
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
