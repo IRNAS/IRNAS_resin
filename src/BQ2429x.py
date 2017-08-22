@@ -146,7 +146,7 @@ class BQ2429x(object):
 			return 0
 
 	# def set_charge_voltage(self, new_charge_voltage) - set the charge voltage
-	def set_charge_voltage(self, new_charge_voltage):
+	def set_charge_voltage(self):
 
 		# for default we are getting 245, if we calculate it as the default voltage
 		# which is 4,112V then 255 is 4,279V

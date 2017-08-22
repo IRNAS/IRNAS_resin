@@ -31,7 +31,7 @@ def main():
 	print "BQ2429x : fault - BOOST_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BOOST_FAULT))
 	print "BQ2429x : fault - WATCHDOG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))'''
 
-	print sensor_bq.set_charge_current()
+	print sensor_bq.set_charge_voltage()
 
 	time.sleep(1)
 
