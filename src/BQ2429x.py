@@ -46,15 +46,15 @@ BQ2429x_VENDOR_ADDR 				= 0x0A; #/ Vender / Part / Revision Status Register REG0
 class BQ2429x(object):
 	def __init__(self):
 		try:
-			self._device = i2c.get_i2c_device(BQ2429x_I2CADDR)
+			self._device = i2c.get_i2c_device(BQ2429x_I2CADDR)								# connect to the device
 		except:
 			print "Couldn't connect to BQ2429x | I2C init"
 
 	# def get_status(self) - it gets the status of the sensor (0-255)
 	def get_status(self):
 		try:
-			value = self._device.readU8(BQ2429x_STATUS_ADDR)
-			return value
+			value = self._device.readU8(BQ2429x_STATUS_ADDR)								# reading the status register
+			return value 																	# returning it
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
@@ -62,22 +62,23 @@ class BQ2429x(object):
 	# def get_faults(self) - it gets the faults of the sensor (0-255)
 	def get_faults(self):
 		try:
-			value = self._device.readU8(BQ2429x_FAULT_ADDR)
-			return value
+			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# reading the fault register
+			return value 																	# returning it
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
 
+	# def set_charge_voltage(self, new_charge_voltage) - set the charge voltage
 	def set_charge_voltage(self, new_charge_voltage):
 
 		# for default we are getting 245, if we calculate it as the default voltage
 		# which is 4,112V then 255 is 4,279V
 
 		try:
-			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
-			new_value = current_value		# here we should set it new_value = new_charge_voltage
-			print "BQ2429x : Setting new charge voltage to " + str(new_value)
-			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 
+			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)				# reading the current value from the register
+			new_value = current_value														# here we should set it new_value = new_charge_voltage
+			print "BQ2429x : Setting new charge voltage to " + str(new_value)				# debugging
+			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, new_value) 					# writing the new value to the register
 
 			'''
 			# double checking for values
@@ -86,16 +87,16 @@ class BQ2429x(object):
 				print "BQ2429x : charge voltage : Error not the same value returned! "
 			'''
 
-		except:
+		except:																				# can't do the above 
 			print "Couldn't connect to BQ2429x"
 			return 0
 
 	def set_charge_current(self, new_charge_current):
 		try:
-			current_value = self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR)
-			new_value = current_value 	# here we should set it to new_value = new_charge_current 
-			print "BQ2429x : Setting new charge current to " + str(new_value)
-			self._device.write8(BQ2429x_CHARGE_CUR_CTRL_ADDR, new_value)
+			current_value = self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR)				# reading the current value from the register
+			new_value = current_value 														# here we should set it to new_value = new_charge_current 
+			print "BQ2429x : Setting new charge current to " + str(new_value)				# debugging 
+			self._device.write8(BQ2429x_CHARGE_CUR_CTRL_ADDR, new_value)					# writing the new value to the register
 
 			'''
 			# double checking
@@ -104,22 +105,6 @@ class BQ2429x(object):
 				print "BQ2429x : charge current : Error not the same value returned! "
 			'''
 
-		except:
-			print "Couldn't connect to BQ2429x"
-			return 0
-
-	def set_input_current_limit(self, new_current_limit):
-		try:
-			current_value = self._device.readU8(BQ2429x_INPUT_CTRL_ADDR)
-			new_value = current_value 	# here we should set it to new_value = new_current_limit
-			print "BQ2429x : Setting the input current limit to " + str(new_value)
-			self._device.write8(BQ2429x_INPUT_CTRL_ADDR, new_value)
-
-			# double checking
-			check_value = self._device.readU8(BQ2429x_INPUT_CTRL_ADDR)
-			if new_value != check_value:
-				print "BQ2429x : input current limit : Error not the same value returned!"
-				
-		except:
+		except:																				# can't do the above 
 			print "Couldn't connect to BQ2429x"
 			return 0

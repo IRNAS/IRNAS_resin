@@ -19,7 +19,7 @@ def main():
 	print "BQ2429x : faults : " + str(sensor_bq.get_faults())
 	#sensor_bq.set_charge_voltage(0)
 	#sensor_bq.set_charge_current(0)
-	sensor_bq.set_input_current_limit(0)
+	#sensor_bq.set_input_current_limit(0)
 
 
 	time.sleep(1)

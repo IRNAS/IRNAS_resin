@@ -38,16 +38,16 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 class MAX1720x(object):
 	def __init__(self):
 		try:
-			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)
+			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
 		try:
-			combined = self._device.readU16(MAX1720X_VCELL_ADDR)
-			value = combined * 0.078125
-			return value	
+			combined 	= self._device.readU16(MAX1720X_VCELL_ADDR)				# read the vcell register
+			value 		= combined * 0.078125									# to get the actual value
+			return value														# return it
 
 		except:
 			print "Couldn't connect to MAX1720"
@@ -56,9 +56,9 @@ class MAX1720x(object):
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
-			combined = self._device.readU16(MAX1720X_CURENT_ADDR)
-			value = combined * 0.0015625 / 0.01 #calculate actual value as 0.0015625 mV/Ohm
-			return value
+			combined 	= self._device.readU16(MAX1720X_CURENT_ADDR)			# read the current register
+			value 		= combined * 0.0015625 / 0.01 							# calculate actual value as 0.0015625 mV/Ohm
+			return value														# return it
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -66,9 +66,9 @@ class MAX1720x(object):
 	# def get_temperature(self) - getting the chip (surroundings) temperature
 	def get_temperature(self):
 		try:
-			combined = self._device.readU16(MAX1720X_TEMP_ADDR)
-			value = combined / 256.0
-			return float(value)
+			combined 	= self._device.readU16(MAX1720X_TEMP_ADDR)				# read the temp register
+			value 		= combined / 256.0										# divide by 256 to get real value
+			return float(value)													# return value but float
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -76,9 +76,9 @@ class MAX1720x(object):
 	# def get_SOC(self) - the relative state of charge of the connected LiIon Polymer battery as a percentage of the full capacity w/ resolution 1/256%
 	def get_SOC(self):
 		try:
-			combined = self._device.readU16(MAX1720X_REPSOC_ADDR)
-			value = combined / 256
-			return value
+			combined 	= self._device.readU16(MAX1720X_REPSOC_ADDR)			# read the soc register
+			value 		= combined / 256										# divide by 256 to get real value
+			return value														# return value
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -86,9 +86,9 @@ class MAX1720x(object):
 	# def get_capacity(self) - RepCap or reported capacity is a filtered version of the AvCap register that prevents large jumps in the reported value caused by changes in the application such as abrupt changes in temperature or load current.
 	def get_capacity(self):
 		try:
-			combined = self._device.readU16(MAX1720X_REPCAP_ADDR)
-			value = combined * 0.005 / 0.01
-			return value
+			combined 	= self._device.readU16(MAX1720X_REPCAP_ADDR)			# read the capacity register
+			value 		= combined * 0.005 / 0.01								# get the real value
+			return value														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -96,9 +96,9 @@ class MAX1720x(object):
 	# def get_TTE(self) - the TTE register holds the estimated time to empty for the application under present temperature and load conditions 
 	def get_TTE(self):
 		try:
-			combined  = self._device.readU16(MAX1720X_TTE_ADDR)
-			value = combined * 5.625 # we are calculating actual value with 5.625s
-			return value 
+			combined  	= self._device.readU16(MAX1720X_TTE_ADDR)				# read the tte register
+			value 		= combined * 5.625 										# we are calculating actual value with 5.625s
+			return value 														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -106,9 +106,9 @@ class MAX1720x(object):
 	# def get_TTF(self) - the TTF register holds the estimated time to full for the application under present conditions. 
 	def get_TTF(self):
 		try:
-			combined = self._device.readU16(MAX1720X_TTF_ADDR)
-			value = combined * 5.625
-			return value
+			combined 	= self._device.readU16(MAX1720X_TTF_ADDR)				# read the ttf register
+			value 		= combined * 5.625										# we are calculating actual value with 5.625s
+			return value														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -116,8 +116,8 @@ class MAX1720x(object):
 	# def get_status(self) - Status Register (000h) The Status register maintains all flags related to alert thresholds and battery insertion or removal.	
 	def get_status(self):
 		try:
-			combined = self._device.readU16(MAX1720X_STATUS_ADDR)
-			return combined
+			value = self._device.readU16(MAX1720X_STATUS_ADDR)					# read the status register
+			return value														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
