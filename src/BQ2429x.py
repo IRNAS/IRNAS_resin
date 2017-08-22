@@ -69,7 +69,7 @@ class BQ2429x(object):
 				return {
 					0 : "BAT > VSYSMIN",
 					1 : "BAT < VSYSMIN"
-				}[binary_value[0]]
+				}[binary_value[0]]()
 
 			elif type_of_status == THERM_STAT:
 				if binary_value[1] == 0:
