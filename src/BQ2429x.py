@@ -53,8 +53,11 @@ class BQ2429x(object):
 	# def get_status(self) - it gets the status of the sensor (0-255)
 	def get_status(self):
 		try:
-			value = self._device.readU8(BQ2429x_STATUS_ADDR)								# reading the status register
-			return hex(value)																# returning it
+			# reading it 0-255
+			value = self._device.readU8(BQ2429x_STATUS_ADDR)								
+			# convert to byte array
+			return value.bin[2:]
+
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
