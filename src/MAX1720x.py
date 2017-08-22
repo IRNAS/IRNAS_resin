@@ -124,4 +124,4 @@ class MAX1720x(object):
 
 	def get_cell_1(self):
 		value = self._device.readU16(0xD8)
-		return value
+		return float(value * 0.078125)
