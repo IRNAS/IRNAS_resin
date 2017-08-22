@@ -69,9 +69,11 @@ class BQ2429x(object):
 		try:
 			# reading it 0-255
 			value = self._device.readU8(BQ2429x_STATUS_ADDR)	
-										
+
 			# convert to byte array and remove the 0b part
 			binary_value = bin(value)[2:]
+
+			print binary_value
 
 			if type_of_status == VSYS_STAT:
 				return vsys_data[binary_value[0]]
