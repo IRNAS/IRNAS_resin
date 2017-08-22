@@ -35,11 +35,6 @@ MAX1704X_AVCELL_ADDR 	= 0x17; # Battery cycles
 MAX1704X_COMMAND_ADDR 	= 0x60; # Command register
 MAX1704X_CONFIG2_ADDR 	= 0xbb; # Command register
 
-MAX17043				= 1
-MAX17044				= 2
-
-_IC 					= MAX17044
-
 class MAX1720x(object):
 	def __init__(self):
 		try:
@@ -58,3 +53,5 @@ class MAX1720x(object):
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
+
+	
