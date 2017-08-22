@@ -9,7 +9,7 @@ def main():
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current())
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
-	print "-----------------------------------------------"
+	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
 	time.sleep(1)
 
 if __name__ == '__main__':
