@@ -50,7 +50,7 @@ PG_STAT								= 2
 THERM_STAT							= 1
 VSYS_STAT							= 0
 
-vsys_data = {0 : "BAT > VSYSMIN", 1 : "BAT < VSYSMIN"}
+vsys_data = {'0' : "BAT > VSYSMIN", '1' : "BAT < VSYSMIN"}
 
 
 class BQ2429x(object):
