@@ -53,4 +53,14 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	#
+	def get_current(self):
+		try:
+			combined = self._device.readU16(MAX1704X_CURENT_ADDR)
+			value = combined * 0.0015625 / 0.01 #calculate actual value as 0.0015625 mV/Ohm
+			return value
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
 	
