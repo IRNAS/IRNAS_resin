@@ -66,8 +66,8 @@ class MAX1720x(object):
 	def get_temperature(self):
 		try:
 			combined = self._device.readU16(MAX1704X_TEMP_ADDR)
-			value = combined / 256
-			return value
+			value = combined / 256.0
+			return float(value)
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
