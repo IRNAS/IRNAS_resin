@@ -13,7 +13,10 @@
  * Filename: bq2429x.py
  * File description: Definitions and methods for the bq2429x library
 ''' 
+import logging
 import time
+import Adafruit_GPIO.I2C as I2C
+i2c = I2C
 
 BQ2429x_I2CADDR 					= 0x0b;
 BQ2429x_INPUT_CTRL_ADDR 			= 0x00; # Input Source Control Register REG00 [reset = 00110xxx, or 3x]
