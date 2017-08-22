@@ -95,7 +95,16 @@ class BQ2429x(object):
 					return "Fast charging"
 				elif _stat == "11":
 					return "Charge termination done"
-			
+			elif type_of_status == VBUS_STAT:
+				_stat = str(binary_value[6]) + str(binary_value[7])
+				if _stat == "00":
+					return "No input"
+				elif _stat == "01":
+					return "USB host"
+				elif _stat == "10":
+					return "Adapter port"
+				elif _stat == "11":
+					return "OTG"
 
 
 		except:
