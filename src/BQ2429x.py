@@ -45,11 +45,11 @@ BQ2429x_VENDOR_ADDR 				= 0x0A #/ Vender / Part / Revision Status Register REG0A
 
 # indentifications for the register values
 VBUS_STAT							= 5
-CHRG_STAT, WATCHDOG_FAULT			= 4
-DPM_STAT, BOOST_FAULT				= 3
-PG_STAT, CHRG_FAULT					= 2
-THERM_STAT, BAT_FAULT				= 1
-VSYS_STAT, NTC_FAULT				= 0
+CHRG_STAT = WATCHDOG_FAULT			= 4
+DPM_STAT = BOOST_FAULT				= 3
+PG_STAT = CHRG_FAULT				= 2
+THERM_STAT = BAT_FAULT				= 1
+VSYS_STAT = NTC_FAULT				= 0
 
 # status register values
 vsys_data 	= { '0' : "BAT > VSYSMIN", '1' : "BAT < VSYSMIN" }
