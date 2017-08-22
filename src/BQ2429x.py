@@ -75,6 +75,13 @@ chrg_fault_data = { "00" : "Normal", "01" : "Input fault (VBUS OVP or VBAT<VBUS<
 boost_data 		= { '0' : "Normal", '1' : "VBUS overloaded or VBUS OVP in boost mode" }
 watchdog_data	= { '0' : "Normal", '1' : "Watchdog timer expiration" }
 
+CVL_RANGE		= 111000
+CVL_DEFAULT		= 100110
+PRECH_0			= 0
+PRECH_1			= 1
+THRESH_0		= 0
+THRESH_1		= 1	
+
 class BQ2429x(object):
 	def __init__(self):
 		try:
@@ -145,23 +152,25 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
-	# def set_charge_voltage(self, new_charge_voltage) - set the charge voltage
-	def set_charge_voltage(self):
+	def set_charge_voltage(self, c_v_l, precharge, thresh):
 
-		# for default we are getting 245, if we calculate it as the default voltage
-		# which is 4,112V then 255 is 4,279V
+		# c_v_l 		- charge voltage limit, 
+		#				- set to CVL_RANGE (3.504V-4.400V)
+		#				- set to CVL_DEFAULT (4.112V) (default)
+		# precharge 	- battery precharge to fast charge threshold
+		#				- set to PRECH_0	(2.8V)
+		#				- set to PRECH_1	(3.0V) (default)
+		# thresh 		- battery recharge threshold (below battery regulation voltage)
+		#				- set to THRESH_0 	(100mV) (default)
+		#				- set to THRESH_1	(300mV)
 
 		try:
-			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)				# reading the current value from the register
+			#current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)				# reading the current value from the register
 
-			return bin(current_value)[2:]	
+			#return bin(current_value)[2:]	
+			writing_value = str(thresh) + str(precharge) + str(c_v_l)
+			return hex(writing_value)
 
-			'''
-			# double checking for values
-			check_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
-			if new_value != check_value:
-				print "BQ2429x : charge voltage : Error not the same value returned! "
-			'''
 
 		except:																				# can't do the above 
 			print "Couldn't connect to BQ2429x"
