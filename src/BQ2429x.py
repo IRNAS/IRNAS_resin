@@ -67,7 +67,8 @@ ntc_data		= {
 	"011" : "TS2 Cold",
 	"100" : "TS2 Hot",
 	"101" : "Both Cold",
-	"110" : "Both Hot"
+	"110" : "Both Hot",
+	"111" : "Not defined..."
 }
 bat_data		= { '0' : "Normal", '1' : "BatOVP" }
 chrg_fault_data = { "00" : "Normal", "01" : "Input fault (VBUS OVP or VBAT<VBUS<3.8V)","10" : "Thermal shutdown","11" : "Charge Safety Timer Expiration" }
