@@ -124,6 +124,7 @@ class BQ2429x(object):
 		
 			if type_of_fault == NTC_FAULT:
 				_stat = str(binary_value[0]) + str(binary_value[1]) + str(binary_value[2])
+				print _stat
 				return ntc_data[_stat]
 			elif type_of_fault == BAT_FAULT:
 				return bat_data[binary_value[3]]
