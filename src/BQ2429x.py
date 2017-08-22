@@ -56,7 +56,8 @@ class BQ2429x(object):
 			# reading it 0-255
 			value = self._device.readU8(BQ2429x_STATUS_ADDR)								
 			# convert to byte array
-			return value.bin[2:]
+			#return value.bin[2:]
+			return value
 
 		except:
 			print "Couldn't connect to BQ2429x"
