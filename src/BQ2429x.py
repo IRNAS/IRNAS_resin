@@ -74,7 +74,29 @@ class BQ2429x(object):
 				if binary_value[1] == 0:
 					return "Normal status"
 				else:
-					return "In thermal regulation!"
+					return "In thermal regulation"
+			elif type_of_status == PG_STAT:
+				if binary_value[2] == 0:
+					return "Not good power"
+				else:
+					return "Power good"
+			elif type_of_status == DPM_STAT:
+				if binary_value[3] == 0:
+					return "Not DPM"
+				else:
+					return "VINDPM or IINDPM"
+			elif type_of_status == CHRG_STAT:
+				_stat = str(binary_value[4]) + str(binary_value[5])
+				if _stat == "00":
+					return "Not charging"
+				elif _stat == "01":
+					return "Pre-charger"
+				elif _stat == "10":
+					return "Fast charging"
+				elif _stat == "11":
+					return "Charge termination done"
+			
+
 
 		except:
 			print "Couldn't connect to BQ2429x"
