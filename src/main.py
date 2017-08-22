@@ -22,7 +22,7 @@ def main():
 	#sensor_max.get_cell_voltage(1)
 
 	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
-
+	print "BQ2429x : status - THERM_STAT : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 
 
 

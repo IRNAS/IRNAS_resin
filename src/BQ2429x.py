@@ -70,6 +70,11 @@ class BQ2429x(object):
 					return "BAT > VSYSMIN"
 				else:
 					return "BAT < VSYSMIN"
+			elif type_of_status == THERM_STAT:
+				if binary_value[1] == 0:
+					return "Normal status"
+				else:
+					return "In thermal regulation!"
 
 		except:
 			print "Couldn't connect to BQ2429x"
