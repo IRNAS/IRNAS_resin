@@ -15,12 +15,15 @@ def main():
 	print "MAX1720x : TTE : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF : " + str(sensor_max.get_TTF())
 	print "MAX1720x : status : " + str(sensor_max.get_status())
-	print "BQ2429x : status : " + str(sensor_bq.get_status())
 	print "BQ2429x : faults : " + str(sensor_bq.get_faults())'''
 	#sensor_bq.set_charge_voltage(0)
 	#sensor_bq.set_charge_current(0)
 	#sensor_bq.set_input_current_limit(0)
 	#sensor_max.get_cell_voltage(1)
+
+	print "BQ2429x : status : " + str(sensor_bq.get_status())
+
+
 
 
 	time.sleep(1)
