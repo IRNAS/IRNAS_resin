@@ -93,12 +93,23 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_TTE(self) - the TTE register holds the estimated time to empty for the application under present temperature and load conditions 
 	def get_TTE(self):
 		try:
 			combined  = self._device.readU16(MAX1720X_TTE_ADDR)
+			value = combined * 5.625 # we are calculating actual value with 5.625s
+			return value 
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
+	# def get_TTF(self) - the TTF register holds the estimated time to full for the application under present conditions. 
+	def get_TTF(self):
+		try:
+			combined = self._device.readU16(MAX1720X_TTF_ADDR)
 			value = combined * 5.625
 			return value
 		except:
 			print "Couldn't connect to MAX1720"
-			return 0
+			return 0	
 	
