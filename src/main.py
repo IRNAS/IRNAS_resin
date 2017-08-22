@@ -13,6 +13,7 @@ def main():
 	print "MAX1720x : capacity : " + str(sensor_max.get_capacity())
 	print "MAX1720x : TTE : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF : " + str(sensor_max.get_TTF())
+	print "MAX1720x : status : " + str(sensor_max.get_status())
 	time.sleep(1)
 
 if __name__ == '__main__':

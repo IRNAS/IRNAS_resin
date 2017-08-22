@@ -111,5 +111,14 @@ class MAX1720x(object):
 			return value
 		except:
 			print "Couldn't connect to MAX1720"
-			return 0	
-	
+			return 0
+			
+	# def get_status(self) - Status Register (000h) The Status register maintains all flags related to alert thresholds and battery insertion or removal.	
+	def get_status(self):
+		try:
+			combined = self._device.readU16(MAX1720X_STATUS_ADDR)
+			return combined
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
