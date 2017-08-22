@@ -66,10 +66,11 @@ class BQ2429x(object):
 			binary_value = bin(value)[2:]
 
 			if type_of_status == VSYS_STAT:
-				if binary_value[0] == 0:
-					return "BAT > VSYSMIN"
-				else:
-					return "BAT < VSYSMIN"
+				return {
+					0 : "BAT > VSYSMIN",
+					1 : "BAT < VSYSMIN"
+				}[binary_value[0]]
+
 			elif type_of_status == THERM_STAT:
 				if binary_value[1] == 0:
 					return "Normal status"
