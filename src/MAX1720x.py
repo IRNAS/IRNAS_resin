@@ -124,6 +124,9 @@ class MAX1720x(object):
 
 	def get_cell_voltage(self, number):
 
+		# PackCfg.ChEn = 1 should be 1 to read everything, but depends on the schematic
+		# Currently just reading one cell
+
 		cell_register_num = [0xD8, 0xD7, 0xD6, 0xD5]
 
 		if(number < 5 and number > 0):
