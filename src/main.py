@@ -6,6 +6,11 @@ import BQ2429x
 
 def main():
 	
+	debug_it_all()
+	time.sleep(1)
+
+def debug_it_all():
+
 	print "-----------------------------------------------"
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage(1)) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current())
@@ -33,7 +38,6 @@ def main():
 	print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
 	print "BQ2429x : set ter_perch : " + str(sensor_bq.set_ter_prech_current(BQ2429x.TERM_CURRENT_DEFAULT,BQ2429x.PRECH_CURRENT_DEFAULT))
 
-	time.sleep(1)
 
 if __name__ == '__main__':
 

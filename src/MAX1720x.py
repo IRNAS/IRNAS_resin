@@ -40,7 +40,7 @@ class MAX1720x(object):
 		try:
 			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 		except:
-			print "Couldn't connect to MAX1720 | I2C init"
+			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
 	# def get_cell_voltage(self) - gets a cell voltage (~3V)
 	def get_cell_voltage(self):
@@ -122,15 +122,16 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self, number):
 
 		# PackCfg.ChEn = 1 should be 1 to read everything, but depends on the schematic
 		# Currently just reading one cell
 
-		cell_register_num = [0xD8, 0xD7, 0xD6, 0xD5]
+		cell_register_num = [0xD8, 0xD7, 0xD6, 0xD5]							# depends on the number of the cell
 
-		if(number < 5 and number > 0):
-			value = self._device.readU16(cell_register_num[number - 1])
-			return float(value * 0.078125)
+		if(number < 5 and number > 0):											# check if it is in the range
+			value = self._device.readU16(cell_register_num[number - 1])			# get the value dependents on the cell nu,ber
+			return float(value * 0.078125)										# to get actual voltage need to calculate
 		else:
 			return "1-4 cell numbers!"
