@@ -123,7 +123,7 @@ class BQ2429x(object):
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# get the 0-255 value							
 			
 			binary_value = bin(value)[2:]													# convert to byte array and remove the 0b
-			print binary_value
+			print hex(value)
 
 			# choose on the type_of_fault and return the data from the dictionary
 			if type_of_fault == NTC_FAULT:
