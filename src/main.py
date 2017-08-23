@@ -7,7 +7,7 @@ import BQ2429x
 def main():
 	
 	print "-----------------------------------------------"
-	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
+	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage(1)) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current())
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
 	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
