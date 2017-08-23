@@ -165,11 +165,12 @@ class BQ2429x(object):
 		#				- set to THRESH_1	(300mV)
 
 		try:
-			#current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)				# reading the current value from the register
+			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)				# reading the current value from the register
 
 			#return bin(current_value)[2:]	
 			writing_value = str(thresh) + str(precharge) + str(c_v_l)
-			return writing_value
+			print "we would write" + writing_value
+			return current_value
 
 
 		except:																				# can't do the above 
