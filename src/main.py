@@ -6,8 +6,23 @@ import BQ2429x
 
 def main():
 	
-	debug_it_all()
+	#debug_it_all()
+	debug_main()
 	time.sleep(1)
+
+def debug_main():
+	print "-----------------------------------------------"
+	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage(1)) + "mV"
+	print "MAX1720x : current : " + str(sensor_max.get_current())
+	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
+	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
+	print ""
+	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
+	print "BQ2429x : status - THERM_STAT : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
+	print "BQ2429x : status - CHRG_STAT : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
+	print "BQ2429x : fault - BAT_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BAT_FAULT))
+	print "BQ2429x : fault - CHRG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))
+
 
 def debug_it_all():
 
