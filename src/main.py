@@ -16,7 +16,7 @@ def main():
 	print "MAX1720x : TTF : " + str(sensor_max.get_TTF())
 	print "MAX1720x : status : " + str(sensor_max.get_status())'''
 
-	'''print "-----------------------------------------------"
+	print "-----------------------------------------------"
 	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x : status - THERM_STAT : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	print "BQ2429x : status - PG_STAT : " + str(sensor_bq.get_status(BQ2429x.PG_STAT))
@@ -28,11 +28,10 @@ def main():
 	print "BQ2429x : fault - BAT_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BAT_FAULT))
 	print "BQ2429x : fault - CHRG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))
 	print "BQ2429x : fault - BOOST_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BOOST_FAULT))
-	print "BQ2429x : fault - WATCHDOG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))'''
-
-	#print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
-	#print "BQ2429x : set ter_perch : + str(sensor_bq.set_ter_prech_current(BQ2429x.TERM_CURRENT_DEFAULT,BQ2429x.PRECH_CURRENT_DEFAULT))
-	print sensor_bq.set_charge_current(0,0)
+	print "BQ2429x : fault - WATCHDOG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))
+	
+	print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
+	print "BQ2429x : set ter_perch : + str(sensor_bq.set_ter_prech_current(BQ2429x.TERM_CURRENT_DEFAULT,BQ2429x.PRECH_CURRENT_DEFAULT))
 
 	time.sleep(1)
 
