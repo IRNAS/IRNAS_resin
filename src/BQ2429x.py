@@ -166,8 +166,8 @@ class BQ2429x(object):
 
 		try:
 							# reading the current value from the register
-			writing_value = str(thresh) + str(precharge) + str(c_v_l)
-			return hex(int(writing_value, 8))
+			writing_value = int(str(thresh) + str(precharge) + str(c_v_l))
+			return writing_value
 			'''self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, writing_value)
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
 			return current_value'''
