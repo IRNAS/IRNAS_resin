@@ -5,8 +5,8 @@ import BQ2429x
 
 def main():
 	
-	#debug_it_all()
-	debug_main()
+	debug_it_all()
+	#debug_main()
 	time.sleep(1)
 
 def debug_main():
