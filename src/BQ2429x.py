@@ -154,6 +154,8 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
+
+
 	def set_ter_prech_current(self, termination, precharge):
 		try:
 			writing_value = int(str(termination) + str(precharge))
@@ -167,6 +169,15 @@ class BQ2429x(object):
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
+
+	def set_charge_current(self, ichg, fast_charge_current):
+		try:
+			current_value = self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR)
+			return bin(current_value)[2:]
+		except:
+			print "Couldn't connect to BQ2429x"
+			return 0
+
 
 	# def set_charge_voltage(self, c_v_l, precharge, thresh) - sets the values for register 4
 	def set_charge_voltage(self, c_v_l, precharge, thresh):
