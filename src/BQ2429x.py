@@ -156,9 +156,14 @@ class BQ2429x(object):
 
 	def set_ter_prech_current(self, termination, precharge):
 		try:
-			self._device.write8(BQ2429x_PRECHARGE_CTRL_ADDR, 0x11)
+			writing_value = int(str(termination) + str(precharge))
+			self._device.write8(BQ2429x_PRECHARGE_CTRL_ADDR, writing_value)
 			current_value = self._device.readU8(BQ2429x_PRECHARGE_CTRL_ADDR)
-			return str(hex(current_value))
+			if int(hex(current_value)) == hex(writing_value):
+				return str(writing_value) + " - Success"
+			else:
+				return str(writing_value) + " - ERROR!"
+			
 		except:
 			print "Couldn't connect to BQ2429x"
 			return 0
