@@ -123,7 +123,8 @@ class BQ2429x(object):
 			value = self._device.readU8(BQ2429x_FAULT_ADDR)									# get the 0-255 value							
 			
 			binary_value = bin(value)[2:]													# convert to byte array and remove the 0b
-		
+			print binary_value
+
 			# choose on the type_of_fault and return the data from the dictionary
 			if type_of_fault == NTC_FAULT:
 				_stat = str(binary_value[0]) + str(binary_value[1]) + str(binary_value[2])
@@ -134,7 +135,6 @@ class BQ2429x(object):
 
 			elif type_of_fault == CHRG_FAULT:
 				_stat = str(binary_value[4]) + str(binary_value[5])
-				print "Charge fault" + _stat
  				return chrg_fault_data[_stat]
 
 			elif type_of_fault == BOOST_FAULT:
