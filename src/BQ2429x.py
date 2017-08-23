@@ -88,6 +88,8 @@ class BQ2429x(object):
 			# convert to byte array and remove the 0b part
 			binary_value = bin(value)[2:]
 			
+			binary_value = self.check8bit(binary_value)
+
 			# it is choosing on the type_of_status and returning the dictionary value
 			if type_of_status == VSYS_STAT:
 				return vsys_data[binary_value[0]]
@@ -162,6 +164,8 @@ class BQ2429x(object):
 			self._device.write8(BQ2429x_PRECHARGE_CTRL_ADDR, writing_value)							# write to register
 			current_value = self._device.readU8(BQ2429x_PRECHARGE_CTRL_ADDR)						# read the register
 	
+			current_value = self.check8bit(current_value)
+
 			if int(hex(current_value)[2:]) == writing_value:										# comapre them 
 				return str(writing_value) + " - Success"											# success!
 			else:
@@ -189,6 +193,8 @@ class BQ2429x(object):
 			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, writing_value)						# write to register
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)						# read the register
 
+			current_value = self.check8bit(current_value)
+
 			if int(bin(current_value)[2:]) == writing_value:										# compare them
 				return str(writing_value) + " - Success"											# success
 			else:
@@ -200,15 +206,12 @@ class BQ2429x(object):
 
 	def check8bit(self, _input):
 		value_length = len(_input)
-		print "_input length" + str(value_length)
-
 		if(value_length != 8):														
 			new_binary_value = ""
 			for i in range(0, 8-value_length):											
 				new_binary_value += "0"
 
-			new_binary_value += str(_input)		
-			print new_binary_value																			
+			new_binary_value += str(_input)																			
 			return new_binary_value
 		else:
 			return _input
