@@ -128,7 +128,7 @@ class BQ2429x(object):
 
 			if(len(binary_value) != 8):
 				new_binary_value = ""
-				for i in range(0, 8-value_length)
+				for i in range(0, 8-value_length):
 					new_binary_value += "0"
 
 				new_binary_value + binary_value
