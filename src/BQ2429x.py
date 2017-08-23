@@ -173,7 +173,7 @@ class BQ2429x(object):
 	def set_charge_current(self, ichg, fast_charge_current):
 		try:
 			self._device.write8(BQ2429x_CHARGE_CUR_CTRL_ADDR, 0x20)
-			return self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR)
+			return hex(self._device.readU8(BQ2429x_CHARGE_CUR_CTRL_ADDR))
 
 		except:
 			print "Couldn't connect to BQ2429x"
