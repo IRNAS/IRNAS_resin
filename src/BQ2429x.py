@@ -170,9 +170,9 @@ class BQ2429x(object):
 			self._device.write8(BQ2429x_CHARGE_VOL_CTRL_ADDR, writing_value)
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)
 			if int(bin(current_value)[2:]) == writing_value:
-				return "Success"
+				return str(writing_value) + " - Success"
 			else:
-				return "ERROR!"
+				return str(writing_value) + " - ERROR!"
 
 
 		except:																				# can't do the above 
