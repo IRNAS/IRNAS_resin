@@ -1,6 +1,5 @@
 import time
 
-import BMP280
 import MAX1720x
 import BQ2429x
 
