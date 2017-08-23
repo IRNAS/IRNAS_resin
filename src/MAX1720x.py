@@ -116,7 +116,7 @@ class MAX1720x(object):
 	# def get_status(self) - Status Register (000h) The Status register maintains all flags related to alert thresholds and battery insertion or removal.	
 	def get_status(self):
 		try:
-			value = self._device.readU16(MAX1720X_STATUS_ADDR)					# read the status register
+			value 		= self._device.readU16(MAX1720X_STATUS_ADDR)			# read the status register
 			return value														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
@@ -131,7 +131,7 @@ class MAX1720x(object):
 		cell_register_num = [0xD8, 0xD7, 0xD6, 0xD5]							# depends on the number of the cell
 
 		if(number < 5 and number > 0):											# check if it is in the range
-			value = self._device.readU16(cell_register_num[number - 1])			# get the value dependents on the cell nu,ber
+			value 	= self._device.readU16(cell_register_num[number - 1])			# get the value dependents on the cell nu,ber
 			return float(value * 0.078125)										# to get actual voltage need to calculate
 		else:
 			return "1-4 cell numbers!"
