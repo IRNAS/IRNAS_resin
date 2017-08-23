@@ -156,7 +156,7 @@ class BQ2429x(object):
 
 	def set_ter_prech_current(self, termination, precharge):
 		try:
-			current_value = self._device.readU8(BQ2429x_PRECHARGE_CTRL_ADDR)
+			current_value = self._device.readU16(BQ2429x_PRECHARGE_CTRL_ADDR)
 			return str(bin(current_value))
 		except:
 			print "Couldn't connect to BQ2429x"
