@@ -194,7 +194,7 @@ class BQ2429x(object):
 			current_value = self._device.readU8(BQ2429x_CHARGE_VOL_CTRL_ADDR)						# read the register
 			
 			current_value = check8bit(current_value)
-			
+
 			if int(bin(current_value)[2:]) == writing_value:										# compare them
 				return str(writing_value) + " - Success"											# success
 			else:
@@ -212,7 +212,7 @@ class BQ2429x(object):
 			for i in range(0, 8-value_length):											
 				new_binary_value += "0"
 
-			new_binary_value += str(_input)										
-			_input = new_binary_value												
-			
-		return _input
+			new_binary_value += str(_input)																					
+			return new_binary_value
+		else:
+			return _input
