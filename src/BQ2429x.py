@@ -159,7 +159,7 @@ class BQ2429x(object):
 			writing_value = int(str(termination) + str(precharge))
 			self._device.write8(BQ2429x_PRECHARGE_CTRL_ADDR, writing_value)
 			current_value = self._device.readU8(BQ2429x_PRECHARGE_CTRL_ADDR)
-			print "writing" + str(hex(writing_value))
+			print "writing" + str(writing_value)
 			return hex(current_value)
 			'''if int(hex(current_value)) == hex(writing_value):
 				return str(writing_value) + " - Success"
