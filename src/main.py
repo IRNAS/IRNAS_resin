@@ -14,8 +14,7 @@ def main():
 	print "MAX1720x : capacity : " + str(sensor_max.get_capacity())
 	print "MAX1720x : TTE : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF : " + str(sensor_max.get_TTF())
-	print "MAX1720x : status : " + str(sensor_max.get_status())
-	print "BQ2429x : faults : " + str(sensor_bq.get_faults())'''
+	print "MAX1720x : status : " + str(sensor_max.get_status())'''
 
 	'''print "-----------------------------------------------"
 	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
@@ -31,7 +30,8 @@ def main():
 	print "BQ2429x : fault - BOOST_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BOOST_FAULT))
 	print "BQ2429x : fault - WATCHDOG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))'''
 
-	print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
+	#print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
+	print sensor_bq.set_ter_prech_current(0,0)
 
 	time.sleep(1)
 
