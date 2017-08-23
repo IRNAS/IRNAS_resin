@@ -124,8 +124,15 @@ class BQ2429x(object):
 			
 			binary_value = bin(value)[2:]													# convert to byte array and remove the 0b
 			
+			value_length = len(binary_value)
+
 			if(len(binary_value) != 8):
-				print "We are reading less than 8bits"
+				new_binary_value = ""
+				for i in range(0, 8-value_length)
+					new_binary_value += "0"
+
+				new_binary_value + binary_value
+				print new_binary_value 
 
 			# choose on the type_of_fault and return the data from the dictionary
 			if type_of_fault == NTC_FAULT:
