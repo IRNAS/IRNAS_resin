@@ -3,6 +3,12 @@ This project extends the [IRNAS battery pack ](https://github.com/IRNAS/IoT-batt
 
 Purpose of this project is to make the battery pack easily accessable and controllable through [resin.io](https://resin.io/).
 
+## Supported sensors
+ - ***BQ2429***
+ - ***MAX1720***
+
+## Main files
+
 #### BQ2429x.py
 Python script for connecting to the BQ2429 chip and interfacing with it.
 
