@@ -131,7 +131,7 @@ class BQ2429x(object):
 				for i in range(0, 8-value_length):
 					new_binary_value += "0"
 
-				new_binary_value + binary_value
+				new_binary_value += str(binary_value)
 				print new_binary_value 
 
 			# choose on the type_of_fault and return the data from the dictionary
