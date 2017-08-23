@@ -206,13 +206,15 @@ class BQ2429x(object):
 
 	def check8bit(self, _input):
 		value_length = len(_input)
+		print "_input length" + str(value_length)
 
 		if(value_length != 8):														
 			new_binary_value = ""
 			for i in range(0, 8-value_length):											
 				new_binary_value += "0"
 
-			new_binary_value += str(_input)																					
+			new_binary_value += str(_input)		
+			print new_binary_value																			
 			return new_binary_value
 		else:
 			return _input
