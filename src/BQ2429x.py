@@ -134,7 +134,8 @@ class BQ2429x(object):
 
 			elif type_of_fault == CHRG_FAULT:
 				_stat = str(binary_value[4]) + str(binary_value[5])
-				return chrg_fault_data[_stat]
+				print "Charge fault" + _stat
+ 				return chrg_fault_data[_stat]
 
 			elif type_of_fault == BOOST_FAULT:
 				return boost_data[binary_value[6]]
