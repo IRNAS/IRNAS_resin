@@ -18,7 +18,7 @@ def main():
 	voltage = combined * 0.078125
 	print "Reading 16bit (raw): " + str(voltage)
 '''
-	print "Reading with adatfruit driver signed 16bit:" + str(sensor_max.get_cell_voltage())
+	print "Reading with adatfruit driver:" + str(sensor_max.get_cell_voltage())
 
 	#debug_main()
 	time.sleep(1)
