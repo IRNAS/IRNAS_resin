@@ -15,8 +15,7 @@ def main():
 	print "Reading all raw: " + str(voltage)
 '''
 	combined = i2c.read_word_data(i2c_addr, 0x09)
-	voltage = combined * 0.00125 * 2
-	print "Reading 16bit (raw): " + str(voltage)
+	print "Reading 16bit (raw): " + str(combined)
 
 	#print "Reading with adatfruit driver:" + str(sensor_max.get_cell_voltage())
 	#print "Reading with adatfruit current (signed): " + str(sensor_max.get_current())
