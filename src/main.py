@@ -13,7 +13,7 @@ def main():
 	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1) | (i2c.read_byte_data(i2c_addr, 0x09)))
 	voltage = combined * 0.078125
 	print "Reading all raw: " + str(voltage)
-'''
+''''''
 	try:
 		combined = i2c.read_word_data(i2c_addr, 0x09)
 		print "Reading 16bit (raw): " + str(combined)
@@ -21,11 +21,9 @@ def main():
 		print "*0.078125: " + str(float(combined) * 0.078125)
 	except:
 		print "error"
-
-
-	#print "Reading with adatfruit driver:" + str(sensor_max.get_cell_voltage())
-	#print "Reading with adatfruit current (signed): " + str(sensor_max.get_current())
-	#debug_main()
+'''
+	
+	debug_main()
 	time.sleep(1)
 
 def debug_main():
