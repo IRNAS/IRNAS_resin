@@ -2,10 +2,15 @@ import time
 
 import MAX1720x
 import BQ2429x
+import smbus as smbus
+
+i2c_addr = 0x36
 
 def main():
 	
-	debug_main()
+	temp = i2c.read_word_data( i2c_addr, 0x09 )
+	print 'MAX1720 at address 0x{0:02x} READ 0x{1:04x}'.format( i2c_addr, temp )
+
 	time.sleep(1)
 
 def debug_main():
@@ -56,6 +61,8 @@ if __name__ == '__main__':
 
 	sensor_max 	= MAX1720x.MAX1720x()
 	sensor_bq	= BQ2429x.BQ2429x()
+
+	i2c = smbus.SMBus(0)
 
 	while 1:
 		main()
