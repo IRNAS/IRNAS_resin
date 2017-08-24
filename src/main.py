@@ -3,6 +3,7 @@ import time
 import MAX1720x
 import BQ2429x
 import smbus as smbus
+import numpy
 
 i2c_addr = 0x36
 
