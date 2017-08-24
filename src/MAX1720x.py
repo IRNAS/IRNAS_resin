@@ -16,7 +16,6 @@
 import logging
 import time
 import Adafruit_GPIO.I2C as I2C
-import numpy
 i2c = I2C
 
 MAX1720X_I2CADDR = 0x36
@@ -46,7 +45,7 @@ class MAX1720x(object):
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
 		try:						
-			value 	= numpy.uint16(self._device.readU16(MAX1720X_VCELL_ADDR))					# get the value dependents on the cell nu,ber
+			value 	= self._device.readU16(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
 			return value * 0.078125													# to get actual voltage need to calculate
 		except:
 			print "Couldn't connect to MAX1720"
