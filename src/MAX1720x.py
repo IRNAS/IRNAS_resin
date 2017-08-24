@@ -15,6 +15,7 @@
 
 import logging
 import time
+import smbus as smbus
 import Adafruit_GPIO.I2C as I2C
 #i2c = I2C
 
