@@ -75,8 +75,6 @@ if __name__ == '__main__':
 	sensor_max 	= MAX1720x.MAX1720x()
 	sensor_bq	= BQ2429x.BQ2429x()
 
-	i2c = smbus.SMBus(1)
-
 	while 1:
 		main()
 

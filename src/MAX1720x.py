@@ -16,7 +16,7 @@
 import logging
 import time
 import Adafruit_GPIO.I2C as I2C
-i2c = I2C
+#i2c = I2C
 
 MAX1720X_I2CADDR = 0x36
 
@@ -38,15 +38,16 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 class MAX1720x(object):
 	def __init__(self):
 		try:
-			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
+			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
+			self.i2c = smbus.SMBus(1)
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
 		try:						
-			value 	= self._device.readU16(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
-			return value * 0.078125												# to get actual voltage need to calculate
+			value 	= self.i2c.read_word_data(MAX1720X_I2CADDR, MAX1720X_VCELL_ADDR)	# get the value dependents on the cell nu,ber
+			return float(value) * 0.078125												# to get actual voltage need to calculate
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
