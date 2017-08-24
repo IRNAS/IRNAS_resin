@@ -17,7 +17,7 @@ def main():
 	combinedlow = i2c.read_byte_data(i2c_addr, 0x09)
 	combinedhigh = i2c.read_byte_data(i2c_addr, 0x09+1)
 	combined = hex(combinedlow | (combinedhigh << 8))
-	print combined
+	print combined * 0.078125
 
 	'''combined = i2c.read_word_data(i2c_addr, 0x09)
 	print "Reading 16bit (raw): " + str(combined)
