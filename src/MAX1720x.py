@@ -60,8 +60,8 @@ class MAX1720x(object):
 			valuez = int(combined,16)
 			if valuez > 0x7FFFFFFF:
 			    valuez -= 0x100000000
-			valuez 		= float(combined) * 0.0015625/0.01 							# calculate actual value as 0.0015625 mV/Ohm
-			return float(valuez)														# return it
+			value 		= float(valuez) * 0.0015625/0.01 							# calculate actual value as 0.0015625 mV/Ohm
+			return float(value)														# return it
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
