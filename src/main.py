@@ -9,8 +9,7 @@ i2c_addr = 0x36
 def main():
 	
 	temp = i2c.read_word_data( i2c_addr, 0x09 )
-	print 'MAX1720 at address 0x{0:02x} READ 0x{1:04x}'.format( i2c_addr, temp )
-
+	print "Read:" + str(temp)
 	time.sleep(1)
 
 def debug_main():
