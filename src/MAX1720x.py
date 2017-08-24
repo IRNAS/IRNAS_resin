@@ -54,7 +54,7 @@ class MAX1720x(object):
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
-			combined 	= self._device.readU16(MAX1720X_CURENT_ADDR)			# read the current register
+			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)			# read the current register
 			value 		= combined * 0.0015625 / 0.01 							# calculate actual value as 0.0015625 mV/Ohm
 			return value														# return it
 		except:
