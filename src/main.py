@@ -3,16 +3,16 @@ import time
 import MAX1720x
 import BQ2429x
 import smbus as smbus
-import numpy
+
 
 i2c_addr = 0x36
 
 def main():
 	
-	'''combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1)) | (i2c.read_byte_data(i2c_addr, 0x09) << 8)
+	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1)) | (i2c.read_byte_data(i2c_addr, 0x09))
 	voltage = combined * 0.078125
-	print voltage'''
-	debug_main()
+	print voltage
+	#debug_main()
 	time.sleep(1)
 
 def debug_main():
