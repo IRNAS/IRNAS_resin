@@ -39,7 +39,7 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 class MAX1720x(object):
 	def __init__(self):
 		try:
-			#self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
+			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 			self.i2c = smbus.SMBus(1)
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
@@ -56,7 +56,7 @@ class MAX1720x(object):
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
-			combined 	= self.i2c.read_word_data(MAX1720X_I2CADDR, MAX1720X_CURENT_ADDR)			# read the current register
+			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)			# read the current register
 			value 		= combined * 0.0015625 / 0.01 							# calculate actual value as 0.0015625 mV/Ohm
 			return value														# return it
 		except:
