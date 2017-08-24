@@ -56,9 +56,9 @@ class MAX1720x(object):
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
-			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)			# read the current register
-			value 		= combined * 0.0015625 / 0.01 							# calculate actual value as 0.0015625 mV/Ohm
-			return value														# return it
+			combined 	= self.i2c.read_word_data(MAX1720X_I2CADDR, MAX1720X_CURENT_ADDR)			# read the current register
+			value 		= float(combined) * 0.0015625/0.01 							# calculate actual value as 0.0015625 mV/Ohm
+			return float(value)														# return it
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
