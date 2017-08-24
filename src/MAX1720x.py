@@ -47,7 +47,7 @@ class MAX1720x(object):
 		try:						
 			value 	= self._device.readU16(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
 			combined = value | (value << 8)
-			return combined * 0.078125													# to get actual voltage need to calculate
+			return combined * 0.00125 * 2													# to get actual voltage need to calculate
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
