@@ -38,7 +38,7 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 class MAX1720x(object):
 	def __init__(self):
 		try:
-			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
+			#self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 			self.i2c = smbus.SMBus(1)
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
