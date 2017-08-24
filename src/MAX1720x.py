@@ -45,8 +45,8 @@ class MAX1720x(object):
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
 		try:						
-			value 	= self._device.readU8(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
-			combined = value | (value << 8)
+			#value 	= self._device.readU8(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
+			combined = self._device.readU8(MAX1720X_VCELL_ADDR) | (self._device.readU8(MAX1720X_VCELL_ADDR+1) << 8)
 			return combined * 0.078125													# to get actual voltage need to calculate
 		except:
 			print "Couldn't connect to MAX1720"
