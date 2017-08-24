@@ -10,7 +10,7 @@ i2c_addr = 0x36
 def main():
 	
 	#combined = i2c.read_word_data(i2c_addr, 0x09)
-	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1) | (i2c.read_byte_data(i2c_addr, 0x09) << 8))
+	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1) | (i2c.read_byte_data(i2c_addr, 0x09)))
 	voltage = combined * 0.078125
 	print "Reading all raw: " + str(voltage)
 
