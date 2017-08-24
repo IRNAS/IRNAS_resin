@@ -8,9 +8,10 @@ i2c_addr = 0x36
 
 def main():
 	
-	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1)) | (i2c.read_byte_data(i2c_addr, 0x09) << 8)
+	'''combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1)) | (i2c.read_byte_data(i2c_addr, 0x09) << 8)
 	voltage = combined * 0.078125
-	print voltage
+	print voltage'''
+	debug_main()
 	time.sleep(1)
 
 def debug_main():
