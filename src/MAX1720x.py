@@ -18,6 +18,8 @@ import time
 import Adafruit_GPIO.I2C as I2C
 i2c = I2C
 
+import Adafruit_PureIO.smbus
+
 MAX1720X_I2CADDR = 0x36
 
 # MAX1704X register addresses
@@ -39,14 +41,16 @@ class MAX1720x(object):
 	def __init__(self):
 		try:
 			self._device = i2c.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
+			busnum = get_default_bus()	
+			self._bus = Adafruit_PureIO.smbus.SMBus(busnum)
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
 		try:						
-			value 	= self._device.readU16LE(MAX1720X_VCELL_ADDR)					# get the value dependents on the cell nu,ber
-			return value * 0.00125 * 2 														# to get actual voltage need to calculate
+			value 	= self._bus.read_word_data(self._address,register)					# get the value dependents on the cell nu,ber
+			return value * 0.078125													# to get actual voltage need to calculate
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -119,3 +123,24 @@ class MAX1720x(object):
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
+
+
+
+	def get_default_bus():
+	    """Return the default bus number based on the device platform.  For a
+	    Raspberry Pi either bus 0 or 1 (based on the Pi revision) will be returned.
+	    For a Beaglebone Black the first user accessible bus, 1, will be returned.
+	    """
+	    plat = Platform.platform_detect()
+	    if plat == Platform.RASPBERRY_PI:
+	        if Platform.pi_revision() == 1:
+	            # Revision 1 Pi uses I2C bus 0.
+	            return 0
+	        else:
+	            # Revision 2 Pi uses I2C bus 1.
+	            return 1
+	    elif plat == Platform.BEAGLEBONE_BLACK:
+	        # Beaglebone Black has multiple I2C buses, default to 1 (P9_19 and P9_20).
+	        return 1
+	    else:
+	        raise RuntimeError('Could not determine default I2C bus for platform.')
