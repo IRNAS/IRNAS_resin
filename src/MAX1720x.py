@@ -77,7 +77,7 @@ class MAX1720x(object):
 			hi = ((combined >> 8) & 0xff)
 			lo = ((combined >> 0) & 0xff)
 			return "hi: " + str(hi) + " lo: " + str(lo)'''
-			return bin(self._device.readU16(0x1BA) | 0x800)
+			return bin(self._device.readU16(0x1BA) | 0b0000000000010000)
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
