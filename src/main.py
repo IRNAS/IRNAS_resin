@@ -9,6 +9,7 @@ i2c_addr = 0x36
 
 def main():
 	#debug_main()
+	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
 	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
 	print "MAX1720x : max_current : " + str(sensor_max.get_max_current()) + "mA"
