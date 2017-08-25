@@ -77,13 +77,13 @@ class MAX1720x(object):
 			hi = ((combined >> 8) & 0xff)
 			lo = ((combined >> 0) & 0xff)
 			return "hi: " + str(hi) + " lo: " + str(lo)'''
-			current_enable = self._device.readU16(0x1B0)
-			#new_enable = current_enable | 0b0000000000010000
-			#print hex(new_enable)
+			current_enable = self._device.readU16(0x1BA)
+			new_enable = current_enable | 0b0000000000010000
+			print hex(new_enable)
 			#print "writing: " + str(self._device.write16(0x1BA, hex(new_enable)))
 			#self._device.write16(0x1BA, hex(new_enable))
-			self.i2c.write_word_data(0x36, 0x1B0, current_enable)
-			return hex(self._device.readU16(0x1B0))
+			self.i2c.write_word_data(0x36, 0x1BA, new_enable)
+			return hex(self._device.readU16(0x1BA))
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
