@@ -75,7 +75,8 @@ class MAX1720x(object):
 			combined = self._device.readU16(0x1C)
 			hi = ((combined >> 8) & 0xff)
 			lo = ((combined >> 0) & 0xff)
-			return "hi: " + str(hi) + " lo: " + str(lo)
+			#return "hi: " + str(hi) + " lo: " + str(lo)
+			return ((hi * 0.0004) / 0.010)
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
