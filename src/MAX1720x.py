@@ -57,7 +57,6 @@ class MAX1720x(object):
 	def get_current(self):
 		try:
 			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)			# read the current register
-			valuez = combined / 0.010
 			return valuez
 		except:
 			print "Couldn't connect to MAX1720"
