@@ -81,7 +81,7 @@ class MAX1720x(object):
 	def get_max_current(self):
 		try:
 			combined = self._device.readS16(0x1C)
-			return hex((combined >> 8) & 0xff)
+			return ((combined >> 8) & 0xff) * 0.04 * 1000
 
 		except:
 			print "Couldn't connect to MAX1720"
