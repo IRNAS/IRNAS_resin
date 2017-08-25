@@ -80,7 +80,7 @@ class MAX1720x(object):
 			current_enable = self._device.readU16(0x1BA)
 			new_enable = current_enable | 0b0000000000010000
 			#self._device.writeU16(new_enable)
-			return bin(new_enable)
+			return hex(new_enable)
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
