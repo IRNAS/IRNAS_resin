@@ -72,8 +72,8 @@ class MAX1720x(object):
 
 	def get_max_current(self):
 		try:
-			high = self.i2c.read_word_data(MAX1720X_I2CADDR, 0x1C)
-			low  = self.i2c.read_word_data(MAX1720X_I2CADDR, 0x1C + 1)
+			high = self.i2c.read_byte_data(MAX1720X_I2CADDR, 0x1C)
+			low  = self.i2c.read_byte_data(MAX1720X_I2CADDR, 0x1C + 1)
 			return (high * 0.0004 / 0.010) 
 		except:
 			print "Couldn't connect to MAX1720"
