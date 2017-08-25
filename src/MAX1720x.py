@@ -62,6 +62,14 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	def get_avg_current(self):
+		try:
+			combined 	= self._device.readS16(0x0B)
+			return float((combined * 0.0015625) / 0.010)
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
 	# def get_temperature(self) - getting the chip (surroundings) temperature
 	def get_temperature(self):
 		try:
