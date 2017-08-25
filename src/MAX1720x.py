@@ -153,7 +153,8 @@ class MAX1720x(object):
 		print "Enabling minmax current"
 		try:
 			current_enable = self._device.readU16(0x1BA)
-			new_enable = current_enable | 0b0000000000010000
+			new_enable = hex(bin(current_enable) | 0b0000000000010000)
+			print str(new_enable)
 			self._device.writeU16(0x1BA, new_enable)
 		except:
 			print "ERROR!"
