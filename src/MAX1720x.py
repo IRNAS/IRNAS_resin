@@ -80,7 +80,8 @@ class MAX1720x(object):
 			current_enable = self._device.readU16(0x1BA)
 			new_enable = current_enable | 0b0000000000010000
 			print hex(new_enable)
-			print "writing: " + str(self._device.write16(0x1BA, hex(new_enable)))
+			#print "writing: " + str(self._device.write16(0x1BA, hex(new_enable)))
+			self.i2c.write_word_data(MAX1720X_I2CADDR,0x1BA,hex(new_enable))
 			return hex(self._device.readU16(0x1BA))
 		except:
 			print "Couldn't connect to MAX1720"
