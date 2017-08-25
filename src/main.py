@@ -8,9 +8,9 @@ import smbus as smbus
 i2c_addr = 0x36
 
 def main():
-	debug_main()
-
-	time.sleep(1)
+	#debug_main()
+	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
+	time.sleep(0.4)
 
 def debug_main():
 	print "-----------------------------------------------"
