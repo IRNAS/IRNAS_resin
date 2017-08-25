@@ -8,22 +8,9 @@ import smbus as smbus
 i2c_addr = 0x36
 
 def main():
-	'''
-	#combined = i2c.read_word_data(i2c_addr, 0x09)
-	combined = (i2c.read_byte_data(i2c_addr, 0x09 + 1) | (i2c.read_byte_data(i2c_addr, 0x09)))
-	voltage = combined * 0.078125
-	print "Reading all raw: " + str(voltage)
-''''''
-	try:
-		combined = i2c.read_word_data(i2c_addr, 0x09)
-		print "Reading 16bit (raw): " + str(combined)
-		print "raw hex: " + str(hex(combined))
-		print "*0.078125: " + str(float(combined) * 0.078125)
-	except:
-		print "error"
-'''
 	
 	debug_main()
+	
 	time.sleep(1)
 
 def debug_main():
