@@ -42,7 +42,12 @@ class MAX1720x(object):
 			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 			self.i2c = smbus.SMBus(1)
 
-			set_minmax_current()
+			current_enable = self._device.readU16(0x1BA)
+			new_enable = current_enable | 0b0000000000010000
+			self.i2c.write_word_data(0x36, 0x1BA, new_enable)
+			if new_enable != self._device.readU16(0x1BA):
+				print "It is not the same register"
+				return 0
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
@@ -143,10 +148,3 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
-	def set_minmax_current():
-		current_enable = self._device.readU16(0x1BA)
-		new_enable = current_enable | 0b0000000000010000
-		self.i2c.write_word_data(0x36, 0x1BA, new_enable)
-		if new_enable != self._device.readU16(0x1BA):
-			print "It is not the same register"
-			return 0
