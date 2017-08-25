@@ -11,6 +11,7 @@ def main():
 	#debug_main()
 	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
 	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
+	print "MAX1720x : max_current : " + str(sensor_max.get_max_current()) + "mA"
 	time.sleep(0.4)
 
 def debug_main():

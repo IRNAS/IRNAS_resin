@@ -70,6 +70,15 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	def get_max_current(self):
+		try:
+			high = self.i2c.read_word_data(MAX1720X_I2CADDR, 0x1C)
+			low  = self.i2c.read_word_data(MAX1720X_I2CADDR, 0x1C + 1)
+			return high
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
 	# def get_temperature(self) - getting the chip (surroundings) temperature
 	def get_temperature(self):
 		try:
