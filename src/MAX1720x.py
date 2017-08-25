@@ -73,6 +73,7 @@ class MAX1720x(object):
 	def get_max_current(self):
 		try:
 			combined = self._device.readU16(0x1C)
+			print "hex: " + str(bin(combined))
 			hi = ((combined >> 8) & 0xff)
 			lo = ((combined >> 0) & 0xff)
 			return "hi: " + str(hi) + " lo: " + str(lo)
