@@ -41,6 +41,8 @@ class MAX1720x(object):
 		try:
 			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
 			self.i2c = smbus.SMBus(1)
+
+			set_minmax_current()
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
@@ -72,18 +74,12 @@ class MAX1720x(object):
 
 	def get_max_current(self):
 		try:
-			'''combined = self._device.readU16(0x1C)
+			combined = self._device.readU16(0x1C)
 			print "hex: " + str(bin(combined))
 			hi = ((combined >> 8) & 0xff)
 			lo = ((combined >> 0) & 0xff)
-			return "hi: " + str(hi) + " lo: " + str(lo)'''
-			current_enable = self._device.readU16(0x1BA)
-			new_enable = current_enable | 0b0000000000010000
-			print hex(new_enable)
-			#print "writing: " + str(self._device.write16(0x1BA, hex(new_enable)))
-			#self._device.write16(0x1BA, hex(new_enable))
-			self.i2c.write_word_data(0x36, 0x1BA, new_enable)
-			return hex(self._device.readU16(0x1BA))
+			return "hi: " + str(hi) + " lo: " + str(lo)
+
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -145,4 +141,12 @@ class MAX1720x(object):
 			return value														# return the value
 		except:
 			print "Couldn't connect to MAX1720"
+			return 0
+
+	def set_minmax_current():
+		current_enable = self._device.readU16(0x1BA)
+		new_enable = current_enable | 0b0000000000010000
+		self.i2c.write_word_data(0x36, 0x1BA, new_enable)
+		if new_enable != self._device.readU16(0x1BA):
+			print "It is not the same register"
 			return 0
