@@ -82,6 +82,7 @@ class MAX1720x(object):
 			print hex(new_enable)
 			#print "writing: " + str(self._device.write16(0x1BA, hex(new_enable)))
 			#self._device.write16(0x1BA, hex(new_enable))
+			self.i2c.write_word_data(0x37, 0x1BA, hex(new_enable))
 			return hex(self._device.readU16(0x1BA))
 		except:
 			print "Couldn't connect to MAX1720"
