@@ -8,7 +8,6 @@ import smbus as smbus
 i2c_addr = 0x36
 
 def main():
-	print "is it online dafuq?!"
 	debug_main()
 
 	time.sleep(1)
