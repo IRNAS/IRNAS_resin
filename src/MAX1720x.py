@@ -80,11 +80,8 @@ class MAX1720x(object):
 
 	def get_max_current(self):
 		try:
-			combined = self._device.readU16(0x1C)
-			print "binary: " + str(bin(combined))
-			hi = ((combined >> 8) & 0xff)
-			lo = ((combined) & 0xff)
-			return "hi: " + str(hi) + " lo: " + str(lo)
+			combined = self._device.readS16(0x1C)
+			return bin(combined)
 
 		except:
 			print "Couldn't connect to MAX1720"
