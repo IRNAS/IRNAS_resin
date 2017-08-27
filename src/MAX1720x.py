@@ -79,9 +79,26 @@ class MAX1720x(object):
 			return 0
 
 	def get_max_current(self):
+
+		# at beginning it is set to 80h
+		beginning_hex = 80
+
 		try:
-			combined = self._device.readS16(0x1C)
-			return (((combined >> 8) & 0xff) * 0.0004) / 0.010
+			combined 		= self._device.readU16(0x1C)
+			maximum_current = combined & 0xFF00
+			minium_current 	= combined & 0x00FF 
+
+			# .0004mV / Rsense resolution
+			# 0.0004V / 0.010ohm resolution
+			# 0.04 resolution
+
+			value_calculated_max = maximum_current * 0.04
+
+			convert_to_hex = hex(maximum_current).split('x')[-1]
+			if convert_to_hex == beginning_hex:
+				return "Beginning value 0x80, 128"
+			else:
+				return value_calculated_max
 
 		except:
 			print "Couldn't connect to MAX1720"
