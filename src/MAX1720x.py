@@ -131,7 +131,7 @@ class MAX1720x(object):
 				if(minimum == 255):
 					float_minimum = "invalid "
 
-				if((maximum == 128 and (minimum == 127 or minimum == 255))):
+				if(maximum == 128 and (minimum == 127 or minimum == 255)):
 					float_maximum = "startup values "
 					float_minimum = "startup values "
 			else:
