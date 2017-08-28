@@ -234,6 +234,8 @@ class MAX1720x(object):
 			# with (value & 0x000F) we make it copy the good values but set everything else to 0
 			# with current_reg | (value & 0x000F) we make it "copy" the other values from the current reg to the value
 			new_reg_value = current_reg | (value & 0x000F)	
+
+			# checking register 
 			self.i2c.write_word_data(0x36, 0x029, new_reg_value)
 			if self._device.readU16(0x029) == new_reg_value:
 				print "All good"
