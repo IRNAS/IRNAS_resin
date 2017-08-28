@@ -57,7 +57,7 @@ if __name__ == '__main__':
 	sensor_bq	= BQ2429x.BQ2429x()
 
 	sensor_max.reset_minmax_current()
-	sensor_max.set_average_update_time(9)
+	sensor_max.set_average_update_time(6)
 
 	while 1:
 		main()
