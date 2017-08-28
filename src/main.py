@@ -6,7 +6,7 @@ import smbus as smbus
 
 def main():
 	#debug_main()
-	print sensor_max.set_average_update_time(0)
+	print sensor_max.set_average_update_time(14)
 	time.sleep(6)
 
 def debug_main():
