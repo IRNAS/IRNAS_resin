@@ -222,7 +222,7 @@ class MAX1720x(object):
 		try:
 			current_reg =  self._device.readU16(0x029)
 			print bin(current_reg)
-			current_reg = current_reg & 0xF
+			current_reg = current_reg & 0x000F
 			print bin(current_reg)
 			return bin(current_reg | (value & 0xFFFF))
 		except:
