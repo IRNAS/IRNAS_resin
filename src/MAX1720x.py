@@ -120,7 +120,7 @@ class MAX1720x(object):
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))
 
-			return value_calculated_max * 0.04
+			return maximum * 0.04
 
 		except:
 			print "Couldn't connect to MAX1720"
