@@ -5,27 +5,24 @@ import BQ2429x
 import smbus as smbus
 
 def main():
-	#debug_main()
-	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
-	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
-	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
-	print "MAX1720x : max&min_current : " + str(sensor_max.get_max_current())
-	print "MAX1720x : max voltage : " + str(sensor_max.get_maxmin_voltage())
+	debug_main()
 	time.sleep(6)
 
 def debug_main():
 	print "-----------------------------------------------"
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
+	print "MAX1720x : max voltage : " + str(sensor_max.get_maxmin_voltage()) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
+	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
+	print "MAX1720x : max&min_current : " + str(sensor_max.get_max_current())
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
 	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
 	print ""
-	'''print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
+	print "BQ2429x : status - VSYS : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x : status - THERM_STAT : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	print "BQ2429x : status - CHRG_STAT : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
 	print "BQ2429x : fault - BAT_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BAT_FAULT))
-	print "BQ2429x : fault - CHRG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))'''
-
+	print "BQ2429x : fault - CHRG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))
 
 def debug_it_all():
 
@@ -53,9 +50,6 @@ def debug_it_all():
 	print "BQ2429x : fault - BOOST_FAULT : " + str(sensor_bq.get_faults(BQ2429x.BOOST_FAULT))
 	print "BQ2429x : fault - WATCHDOG_FAULT : " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))
 	print ""
-	#print "BQ2429x : set charge voltage : " + str(sensor_bq.set_charge_voltage("110101", BQ2429x.PRECH_1, BQ2429x.THRESH_1))
-	#print "BQ2429x : set ter_perch : " + str(sensor_bq.set_ter_prech_current(BQ2429x.TERM_CURRENT_DEFAULT,BQ2429x.PRECH_CURRENT_DEFAULT))
-
 
 if __name__ == '__main__':
 
