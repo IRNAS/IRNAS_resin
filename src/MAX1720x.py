@@ -112,9 +112,6 @@ class MAX1720x(object):
 		# 0.04 resolution
 		# that is 40mA resolution!
 
-		# 10200, 9800 -> 400 
-		# at 1100 mA it dropped from 10200 to 9040
-
 		try:
 			combined 		= self._device.readS16(0x01C)
 			maximum 		= (combined >> 8) & 0xFF
@@ -127,17 +124,21 @@ class MAX1720x(object):
 			float_maximum = float(maximum * 0.04 * 1000)
 			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
-			if(maximum == 255):
-				float_maximum = "invalid "
+			if(maximum == 255 or minimum == 255 or (maximum == 128 and minimum == 127)):
+				if(maximum == 255):
+					float_maximum = "invalid "
 
-			if(minimum == 255):
-				float_minimum = "invalid "
+				if(minimum == 255):
+					float_minimum = "invalid "
 
-			if(maximum == 128 and minimum == 127):
-				float_maximum = "startup values "
-				float_minimum = "startup values "
+				if(maximum == 128 and minimum == 127):
+					float_maximum = "startup values "
+					float_minimum = "startup values "
+			else:
+				float_maximum = float_maximum + " mA"
+				float_minimum = float_minimum + " mA"
 
-			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
+			return "Max: " + str(float_maximum)+ "   " + "Min: " + str(float_minimum)
 
 		except:
 			print "Couldn't connect to MAX1720"
