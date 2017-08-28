@@ -87,7 +87,9 @@ class MAX1720x(object):
 			minimum = combined & 0x00FF
 
 			binary_value = bin(maximum)[2:]
+			print binary_value
 			decimal = int(binary_value, 2)
+			print decimal
 			return float(decimal * 0.02)
 			
 		except:
