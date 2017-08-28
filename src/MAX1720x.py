@@ -83,8 +83,8 @@ class MAX1720x(object):
 	def get_max_voltage(self):
 		try:
 			combined = self._device.readU16(0x01B)
-			maximum = combined & 0xFF00
-			minimum = combined & 0x00FF
+			maximum = (combined >> 8) & 0xFF
+			minimum = (combined >> 0) & 0xFF
 
 			print "Combined" + str(combined) + " " + str(bin(combined))
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
