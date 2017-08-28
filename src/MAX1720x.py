@@ -223,7 +223,7 @@ class MAX1720x(object):
 			value = 5
 
 			current_reg =  self._device.readU16(0x029)
-			return format(value, 0xFFFF)
+			return bin(value & 0xFFFF)
 		except:
 			print "Couldn't reset minmax current"
 			return 0
