@@ -88,7 +88,7 @@ class MAX1720x(object):
 			maximum_current = combined & 0xFF00
 			minium_current 	= combined & 0x00FF 
 
-			print "Raw maximum: " + str(maximum_current)
+			print "Raw maximum: " + str(bin(maximum_current))
 
 			# .0004mV / Rsense resolution
 			# 0.0004V / 0.010ohm resolution
