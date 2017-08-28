@@ -86,9 +86,9 @@ class MAX1720x(object):
 			maximum = combined & 0xFF00
 			minimum = combined & 0x00FF
 
-			print "Combined" + str(combined)
-			print "Maximum" + str(maximum)
-			print "Minimum" + str(minimum)
+			print "Combined" + str(combined) + " " + str(bin(combined))
+			print "Maximum" + str(maximum) + " " + str(bin(maximum))
+			print "Minimum" + str(minimum) + " " + str(bin(minimum))
 			
 		except:
 			print "Couldn't connect to MAX1720"
