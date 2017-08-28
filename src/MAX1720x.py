@@ -88,9 +88,8 @@ class MAX1720x(object):
 
 			binary_value = bin(maximum)[2:]
 			print binary_value
-			decimal = int(binary_value, 2)
-			print decimal
-			return float(decimal * 0.02)
+			print int(binary_value, 1)
+			return float(binary_value * 0.02)
 			
 		except:
 			print "Couldn't connect to MAX1720"
