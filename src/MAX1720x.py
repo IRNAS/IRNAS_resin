@@ -127,7 +127,10 @@ class MAX1720x(object):
 			float_maximum = float(maximum * 0.04 * 1000)
 			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
-			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
+			if( (float_maximum == 128 and (float_minimum == 127 or float_minimum == 125)) or (float_maximum == 255 and float_minimum == 255) or (float_minimum == 255)):
+				return "Max: invalid   Min: invalid"
+			else:
+				return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
 
 		except:
 			print "Couldn't connect to MAX1720"
