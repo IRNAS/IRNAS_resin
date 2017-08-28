@@ -222,9 +222,9 @@ class MAX1720x(object):
 		try:
 			current_reg =  self._device.readU16(0x029)
 			print bin(current_reg)
-			current_reg = current_reg & 0x000F
+			current_reg = current_reg & 0xFFF0
 			print bin(current_reg)
-			return bin(current_reg | (value & 0xFFFF))
+			return bin(current_reg | (value & 0x000F)) 
 		except:
 			print "Couldn't reset minmax current"
 			return 0
