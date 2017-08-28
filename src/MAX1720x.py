@@ -115,6 +115,7 @@ class MAX1720x(object):
 		# that is 40mA resolution!
 
 		# 10200, 9800 -> 400 
+		# at 1100 mA it dropped from 10200 to 9040
 
 		try:
 			combined 		= self._device.readS16(0x01C)
@@ -126,7 +127,7 @@ class MAX1720x(object):
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))
 
 			float_maximum = float(maximum * 0.04 * 1000)
-			float_minimum = float(minimum * 0.04 * 1000)
+			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
 			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
 
