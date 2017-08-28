@@ -93,6 +93,7 @@ class MAX1720x(object):
 			# .0004mV / Rsense resolution
 			# 0.0004V / 0.010ohm resolution
 			# 0.04 resolution
+			# that is 40mA resolution!
 
 			value_calculated_max = maximum_current * 0.04
 
