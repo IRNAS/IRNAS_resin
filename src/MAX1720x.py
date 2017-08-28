@@ -17,7 +17,6 @@ import logging
 import time
 import smbus as smbus
 import Adafruit_GPIO.I2C as I2C
-#i2c = I2C
 
 MAX1720X_I2CADDR = 0x36
 
@@ -39,21 +38,22 @@ MAX1720X_CONFIG2_ADDR 	= 0xbb; # Command register
 class MAX1720x(object):
 	def __init__(self):
 		try:
-			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)					# connect to device
-			self.i2c = smbus.SMBus(1)
+			self._device = I2C.get_i2c_device(MAX1720X_I2CADDR)							# connect to device
+			self.i2c = smbus.SMBus(1)													# low level i2c bus
 
-			current_enable = self._device.readU16(0x1BA)
-			print hex(current_enable)
-			new_enable = current_enable | 0b0000000000010000
-			self.i2c.write_word_data(0x36, 0x1BA, new_enable)
+			current_enable = self._device.readU16(0x1BA)								# current enable
+			new_enable = current_enable | 0b0000000000010000							# enable minmax current
+			self.i2c.write_word_data(0x36, 0x1BA, new_enable)							# write it
+
+			# check if it is really enabled
 			if new_enable != self._device.readU16(0x1BA):
 				print "It is not the same register"
 				return 0
 
-			self.i2c.write_word_data(0x36, 0x1CF,0x03E8)						# set the rsense register to 0.010ohm
+			#self.i2c.write_word_data(0x36, 0x1CF,0x03E8)								# set the rsense register to 0.010ohm
 
 		except:
-			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
+			print "Couldn't connect to MAX1720 | I2C init"								# coudlnt connect to i2c unit
 
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
@@ -67,16 +67,16 @@ class MAX1720x(object):
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
-			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)			# read the current register
-			return float((combined * 0.0015625) / 0.010)
+			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)					# read the current register
+			return float((combined * 0.0015625) / 0.010)								# calculate it with 0.0015625 mV/Ohm
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
 
 	def get_avg_current(self):
 		try:
-			combined 	= self._device.readS16(0x0B)
-			return float((combined * 0.0015625) / 0.010)
+			combined 	= self._device.readS16(0x0B)									# read the register			
+			return float((combined * 0.0015625) / 0.010)								# calculate it with 0.0015625 mV/Ohm
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
@@ -84,22 +84,23 @@ class MAX1720x(object):
 	def get_maxmin_voltage(self):
 
 		# 20mV resolution -> register * 20mV -> register * 0.02
-		# to get mV we just do -> register * 0.02 * 1000
+		# to get mV we just do -> register * 0.02 * 1000 
+		# the * 1000 is to getting from V to mV
 
 		try:
 			combined = self._device.readU16(0x01B)								# read register minmax voltage	
 			maximum = (combined >> 8) & 0xFF 									# get the maximum 
-			# minimum = (combined >> 0) & 0xFF 									# get the minimum
+			minimum = (combined >> 0) & 0xFF 									# get the minimum
 
+			# debugging
 			'''print "Combined" + str(combined) + " " + str(bin(combined))
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))'''
 
 			# getting the real mV value
-			float_maximum = float(maximum * 0.02 * 1000)						
-			# float_minimum = float(minimum * 0.02 * 1000)
+			float_maximum = float(maximum * 0.02 * 1000)						# calculating by the formula above
 
-			return "Max: " + str(float_maximum) + "mV"
+			return float_maximum												# return it
 			
 		except:
 			print "Couldn't connect to MAX1720"
@@ -113,17 +114,22 @@ class MAX1720x(object):
 		# that is 40mA resolution!
 
 		try:
-			combined 		= self._device.readS16(0x01C)
-			maximum 		= (combined >> 8) & 0xFF
-			minimum 		= (combined >> 0) & 0xFF 
+			combined 		= self._device.readS16(0x01C)						# reading the reg
+			maximum 		= (combined >> 8) & 0xFF							# getting max
+			minimum 		= (combined >> 0) & 0xFF 							# getting min
 
+			# debugging
+			'''
 			print "Combined" + str(combined) + " " + str(bin(combined))
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))
+			'''
 
-			float_maximum = float(maximum * 0.04 * 1000)
-			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
+			# calculating based on the top formula
+			float_maximum = float(maximum * 0.04 * 1000)						# calculate max
+			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))			# calculate min
 
+			# checking if it is a valid value
 			if maximum == 255 or maximum == 128:
 				float_maximum = "invalid"
 			else:
@@ -138,7 +144,7 @@ class MAX1720x(object):
 				float_maximum = "invalid"
 				float_minimum = "invalid"
 
-
+			# returning it 
 			return "Max: " + str(float_maximum)+ "   " + "Min: " + str(float_minimum)
 
 		except:
