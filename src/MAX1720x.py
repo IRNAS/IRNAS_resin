@@ -113,14 +113,17 @@ class MAX1720x(object):
 
 		try:
 			combined 		= self._device.readU16(0x01C)
-			maximum = (combined >> 8) & 0xFF
-			minimum 	= (combined >> 0) & 0xFF 
+			maximum 		= (combined >> 8) & 0xFF
+			minimum 		= (combined >> 0) & 0xFF 
 
 			print "Combined" + str(combined) + " " + str(bin(combined))
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))
 
-			return maximum * 0.04
+			float_maximum = float(maximum * 0.04 * 1000)
+			float_minimum = float(minimum * 0.04 * 1000)
+
+			return "Max: " + str(float_maximum) + "mV   " + "Min: " + str(float_minimum) + "mV"
 
 		except:
 			print "Couldn't connect to MAX1720"
