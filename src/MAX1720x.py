@@ -123,7 +123,7 @@ class MAX1720x(object):
 			float_maximum = float(maximum * 0.04 * 1000)
 			float_minimum = float(minimum * 0.04 * 1000)
 
-			return "Max: " + str(float_maximum) + "mV   " + "Min: " + str(float_minimum) + "mV"
+			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
 
 		except:
 			print "Couldn't connect to MAX1720"
