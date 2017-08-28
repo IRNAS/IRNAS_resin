@@ -86,9 +86,9 @@ class MAX1720x(object):
 			maximum = combined & 0xFF00
 			minimum = combined & 0x00FF
 
-			print str(int(maximum, 8))
+			print int(maximum, 8)
 
-			return float(maximum * 0.02)
+			return maximum * 0.02
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
