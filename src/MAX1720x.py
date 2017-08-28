@@ -83,6 +83,7 @@ class MAX1720x(object):
 	def get_maxmin_voltage(self):
 
 		# 20mV resolution -> register * 20mV -> register * 0.02
+		# to get mV we just do -> register * 0.02 * 1000
 
 		try:
 			combined = self._device.readU16(0x01B)								# read register minmax voltage	
@@ -93,7 +94,11 @@ class MAX1720x(object):
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))'''
 
-			return "Max: " + str(float(maximum * 0.02 * 1000)) + "mV   " + "Min: " + str(float(minimum * 0.02 * 1000)) + "mV"
+			# getting the real mV value
+			float_maximum = float(maximum * 0.02 * 1000)						
+			float_minimum = float(minimum * 0.02 * 1000)
+
+			return "Max: " + str(float_maximum) + "mV   " + "Min: " + str(float_minimum) + "mV"
 			
 		except:
 			print "Couldn't connect to MAX1720"
