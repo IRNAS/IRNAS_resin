@@ -86,10 +86,9 @@ class MAX1720x(object):
 			maximum = combined & 0xFF00
 			minimum = combined & 0x00FF
 
-			binary_value = bin(maximum)[2:]
-			print binary_value
-			print int(binary_value, 1)
-			return float(binary_value * 0.02)
+			print "Combined" + str(combined)
+			print "Maximum" + str(maximum)
+			print "Minimum" + str(minimum)
 			
 		except:
 			print "Couldn't connect to MAX1720"
