@@ -124,20 +124,15 @@ class MAX1720x(object):
 			float_maximum = float(maximum * 0.04 * 1000)
 			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
-			if(maximum == 255 or minimum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0))):
-				print "Entered if"
-
-				if(maximum == 255):
-					float_maximum = "invalid "
-
-				if(minimum == 255):
-					float_minimum = "invalid "
-
-				if(maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0)):
-					float_maximum = "startup values "
-					float_minimum = "startup values "
+			#if(maximum == 255 or minimum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0))):
+			if(maximum == 255):
+				float_maximum = "invalid "
+			else if(minimum == 255):
+				float_minimum = "invalid "
+			else if(maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0)):
+				float_maximum = "startup values "
+				float_minimum = "startup values "
 			else:
-				print "Else"
 				float_maximum = float_maximum + " mA"
 				float_minimum = float_minimum + " mA"
 
