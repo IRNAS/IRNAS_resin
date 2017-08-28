@@ -112,7 +112,7 @@ class MAX1720x(object):
 		# that is 40mA resolution!
 
 		try:
-			combined 		= self._device.readU16(0x01C)
+			combined 		= self._device.readS16(0x01C)
 			maximum 		= (combined >> 8) & 0xFF
 			minimum 		= (combined >> 0) & 0xFF 
 
