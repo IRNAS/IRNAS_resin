@@ -210,9 +210,17 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def reset_minmax_current(self) - reset the minmax register t defaul 0x807F
 	def reset_minmax_current(self):
 		try:
-			self.i2c.write_word_data(0x36, 0x01C, 0x807F)
+			self.i2c.write_word_data(0x36, 0x01C, 0x807F)						# reset the minmax 
 		except:
+			print "Couldn't reset minmax current"
+			return 0
+
+	def set_average_update_time(self):
+		try:
+			return bin(self._device.readU16(0x19D))
+		except
 			print "Couldn't reset minmax current"
 			return 0
