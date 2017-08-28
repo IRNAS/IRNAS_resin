@@ -127,12 +127,14 @@ class MAX1720x(object):
 			#if(maximum == 255 or minimum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0))):
 			if maximum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0)):
 				float_maximum = "invalid"
-			elif minimum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0)):
-				float_minimum = "invalid"
 			else:
 				float_maximum = float_maximum + "mA"
+
+			if minimum == 255 or (maximum == 128 and (minimum == 127 or minimum == 255 or minimum == 0)):
+				float_minimum = "invalid"
+			else:
 				float_minimum = float_minimum + "mA"
-				
+
 			return "Max: " + str(float_maximum)+ "   " + "Min: " + str(float_minimum)
 
 		except:
