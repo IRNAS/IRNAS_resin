@@ -80,13 +80,26 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	def get_max_voltage(self):
+		try:
+			combined = self._device.readU16(0x01B)
+			maximum = combined & 0xFF00
+			minimum = combined & 0x00FF
+
+			print "Raw max: " + str(bin(maximum))
+
+			return maximum * 0.02
+		except:
+			print "Couldn't connect to MAX1720"
+			return 0
+
 	def get_max_current(self):
 
 		# at beginning it is set to 80h
 		beginning_hex = 80
 
 		try:
-			combined 		= self._device.readU16(0x1C)
+			combined 		= self._device.readU16(0x01C)
 			maximum_current = combined & 0xFF00
 			minium_current 	= combined & 0x00FF 
 

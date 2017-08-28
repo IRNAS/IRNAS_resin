@@ -10,6 +10,7 @@ def main():
 	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
 	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
 	print "MAX1720x : max_current : " + str(sensor_max.get_max_current()) + "mA"
+	print "MAX1720x : max_voltage : " + str(sensor_max.get_max_voltage()) + "mV"
 	time.sleep(6)
 
 def debug_main():
