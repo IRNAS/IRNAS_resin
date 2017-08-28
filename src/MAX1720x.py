@@ -124,10 +124,12 @@ class MAX1720x(object):
 			float_maximum = float(maximum * 0.04 * 1000)
 			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
-			if maximum == 255 or maximum == 0 or maximum == 128:
+			if maximum == 255 or maximum == 128:
 				float_maximum = "invalid"
 			else:
-				float_maximum = float_maximum + "mA"
+				float_maximum = str(float_maximum) + "mA"
+
+
 
 			return "Max: " + str(float_maximum)+ "   " + "Min: " + str(float_minimum)
 
