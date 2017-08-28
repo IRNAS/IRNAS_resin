@@ -62,6 +62,8 @@ if __name__ == '__main__':
 	sensor_max 	= MAX1720x.MAX1720x()
 	sensor_bq	= BQ2429x.BQ2429x()
 
+	sensor_max.reset_minmax_current()
+
 	while 1:
 		main()
 
