@@ -219,12 +219,27 @@ class MAX1720x(object):
 			return 0
 
 	def set_average_update_time(self, value):
+		# the formula is calculated by 45 * 2^(value-7) = x seconds
+
+		# table of seconds
+		# 0 -> 0,35s    3 -> 2,8s    6 -> 22,5s  9  -> 3min   12 -> 24min   15 -> 3,2h
+		# 1 -> 0,703s   4 -> 5,65s   7 -> 45s    10 -> 6min   13 -> 48min
+		# 2 -> 1,40     5 -> 11,12s  8 -> 90s    11 -> 12min  14 -> 1,6h
+
+
 		try:
 			current_reg =  self._device.readU16(0x029)
-			print bin(current_reg)
-			current_reg = current_reg & 0xFFF0
-			print bin(current_reg)
-			return bin(current_reg | (value & 0x000F)) 
+			current_reg = current_reg & 0xFFF0									# with this we are clearing the 4 bits we want to set after
+			
+			# with (value & 0x000F) we make it copy the good values but set everything else to 0
+			# with current_reg | (value & 0x000F) we make it "copy" the other values from the current reg to the value
+			new_reg_value = current_reg | (value & 0x000F)	
+			self.i2c.write_word_data(0x36, 0x029, new_reg_value)
+			if self._device.readU16(0x029) == new_reg_value:
+				print "All good"
+			else:
+				print "something went wrong"
+
 		except:
 			print "Couldn't reset minmax current"
 			return 0

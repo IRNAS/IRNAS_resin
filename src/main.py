@@ -5,8 +5,7 @@ import BQ2429x
 import smbus as smbus
 
 def main():
-	#debug_main()
-	print sensor_max.set_average_update_time(14)
+	debug_main()
 	time.sleep(6)
 
 def debug_main():
@@ -58,6 +57,7 @@ if __name__ == '__main__':
 	sensor_bq	= BQ2429x.BQ2429x()
 
 	sensor_max.reset_minmax_current()
+	sensor_max.set_average_update_time(9)
 
 	while 1:
 		main()
