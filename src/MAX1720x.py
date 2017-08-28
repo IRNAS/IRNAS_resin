@@ -114,7 +114,7 @@ class MAX1720x(object):
 		try:
 			combined 		= self._device.readU16(0x01C)
 			maximum = (combined >> 8) & 0xFF
-			minium 	= (combined >> 0) & 0xFF 
+			minimum 	= (combined >> 0) & 0xFF 
 
 			print "Combined" + str(combined) + " " + str(bin(combined))
 			print "Maximum" + str(maximum) + " " + str(bin(maximum))
