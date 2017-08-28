@@ -51,6 +51,9 @@ class MAX1720x(object):
 				return 0
 
 			self.i2c.write_word_data(0x36, 0x1CF,0x03E8)						# set the rsense register to 0.010ohm
+		
+			# reset minmax current 0x807F
+			self.i2c.write_word_data(0x36, 0x01C, 0x807F)
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
