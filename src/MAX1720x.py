@@ -49,6 +49,8 @@ class MAX1720x(object):
 			if new_enable != self._device.readU16(0x1BA):
 				print "It is not the same register"
 				return 0
+
+			self.i2c.write_word_data(0x36, 0x1CF,0x03E8)						# set the rsense register to 0.010ohm
 		except:
 			print "Couldn't connect to MAX1720 | I2C init"						# coudlnt connect to i2c unit
 
