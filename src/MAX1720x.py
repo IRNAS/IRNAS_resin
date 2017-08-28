@@ -220,11 +220,7 @@ class MAX1720x(object):
 
 	def set_average_update_time(self):
 		try:
-			for i in range(0, 15):
-				print "Dec: " + str(i)
-				print "Bin: " + str(bin(i))
-				print str(45 / (2 * (i - 7))) + "s"
-			#return bin(self._device.readU16(0x19D))
+			return bin(self._device.readU16(0x19D))
 		except:
 			print "Couldn't reset minmax current"
 			return 0
