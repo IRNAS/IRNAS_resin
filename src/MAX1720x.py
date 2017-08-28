@@ -99,7 +99,7 @@ class MAX1720x(object):
 
 			# getting the real mV value
 			float_maximum = float(maximum * 0.02 * 1000)						
-			float_minimum = float(minimum * 0.02 * 1000)
+			float_minimum = float(5100 - (minimum * 0.02 * 1000))
 
 			return "Max: " + str(float_maximum) + "mV   " + "Min: " + str(float_minimum) + "mV"
 			
@@ -114,6 +114,8 @@ class MAX1720x(object):
 		# 0.04 resolution
 		# that is 40mA resolution!
 
+		# 10200, 9800 -> 400 
+
 		try:
 			combined 		= self._device.readS16(0x01C)
 			maximum 		= (combined >> 8) & 0xFF
@@ -124,7 +126,7 @@ class MAX1720x(object):
 			print "Minimum" + str(minimum) + " " + str(bin(minimum))
 
 			float_maximum = float(maximum * 0.04 * 1000)
-			float_minimum = float(minimum * 0.04 * 1000)
+			float_minimum = float(-10200 + (minimum * 0.04 * 1000))
 
 			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
 
