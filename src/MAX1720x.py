@@ -128,14 +128,14 @@ class MAX1720x(object):
 			float_minimum = float(-(10200 - (minimum * 0.04 * 1000)))
 
 			if(maximum == 255):
-				float_maximum = "invalid"
+				float_maximum = "invalid "
 
 			if(minimum == 255):
-				float_minimum = "invalid"
+				float_minimum = "invalid "
 
 			if(maximum == 128 and minimum == 127):
-				float_maximum = "startup values"
-				float_minimum = "startup values"
+				float_maximum = "startup values "
+				float_minimum = "startup values "
 
 			return "Max: " + str(float_maximum) + "mA   " + "Min: " + str(float_minimum) + "mA"
 
