@@ -155,7 +155,7 @@ class MAX1720x(object):
 		try:
 			combined 	= self._device.readU16(MAX1720X_TEMP_ADDR)				# read the temp register
 			value 		= combined / 256.0										# divide by 256 to get real value
-			return str(float(value)	+ "C")										# return value but float
+			return str(float(value)) + "C"										# return value but float
 		except:
 			return "Couldn't connect to MAX1720 <---- ERROR"
 
