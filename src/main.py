@@ -41,7 +41,6 @@ def debug_it_all():
 	print "MAX1720x : TTF ----------------- : " + str(sensor_max.get_TTF())
 	print "MAX1720x : Battery ------------- : " + str(sensor_max.get_battery_absent())
 	print "" 
-	print ""
 	print "BQ2429x : status - VSYS -------- : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x : status - THERM_STAT -- : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	print "BQ2429x : status - PG_STAT ----- : " + str(sensor_bq.get_status(BQ2429x.PG_STAT))
