@@ -70,8 +70,7 @@ PRECH_1			= 1
 THRESH_0		= 0
 THRESH_1		= 1	
 
-PRECH_CURRENT_DEFAULT 	= 0001
-TERM_CURRENT_DEFAULT	= 0001
+PRECH_CURRENT_DEFAULT = TERM_CURRENT_DEFAULT = 0001
 
 class BQ2429x(object):
 	def __init__(self):
@@ -204,6 +203,7 @@ class BQ2429x(object):
 			print "Couldn't connect to BQ2429x"
 			return 0
 
+	# def check8bit(self, _input) - checks if every bit is there if not fill it with 0
 	def check8bit(self, _input):
 		value_length = len(_input)
 		if(value_length != 8):														
