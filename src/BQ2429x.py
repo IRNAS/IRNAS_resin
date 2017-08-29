@@ -64,11 +64,9 @@ chrg_fault_data = { "00" : "Normal", "01" : "Input fault (VBUS OVP or VBAT<VBUS<
 boost_data 		= { '0' : "Normal", '1' : "VBUS overloaded or VBUS OVP in boost mode" }
 watchdog_data	= { '0' : "Normal", '1' : "Watchdog timer expiration" }
 
-CVL_DEFAULT		= 100110
-PRECH_0			= 0
-PRECH_1			= 1
-THRESH_0		= 0
-THRESH_1		= 1	
+CVL_DEFAULT			= 100110
+PRECH_0 = THRESH_0 	= 0
+PRECH_1	= THRESH_1 	= 1
 
 PRECH_CURRENT_DEFAULT = TERM_CURRENT_DEFAULT = 0001
 

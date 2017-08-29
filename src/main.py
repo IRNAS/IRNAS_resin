@@ -5,7 +5,8 @@ import BQ2429x
 import smbus as smbus
 
 def main():
-	debug_main()
+	#debug_main()
+	print sensor_max.get_battery_absent()
 	time.sleep(6)
 
 def debug_main():
@@ -28,7 +29,10 @@ def debug_it_all():
 
 	print "-----------------------------------------------"
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
+	print "MAX1720x : max voltage : " + str(sensor_max.get_maxmin_voltage()) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current())
+	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
+	print "MAX1720x : max&min_current : " + str(sensor_max.get_max_current())
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
 	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
 	print "MAX1720x : capacity : " + str(sensor_max.get_capacity())
