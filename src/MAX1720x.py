@@ -204,13 +204,16 @@ class MAX1720x(object):
 	# def get_battery_absent(self) - checks if the battery is present
 	def get_battery_absent(self):
 
-		# d3 -> 4bit 
+		# d3 -> 3rd bit -> checks if battery is here
+		# returns 0 if yes and 1 if not present
 
 		try:
 			value 		= self._device.readU16(MAX1720X_STATUS_ADDR)			# read the status register
-			print bin(value)
-			bit = (value >> 1) & 1;
-			return bit
+			#print bin(value)													# debug	
+			if (value >> 3) & 1:												# checks that bit
+				return "Battery not present"
+			else:
+				return "Battery present"
 		except:
 			print "Couldn't connect to MAX1720"
 			return 0
