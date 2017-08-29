@@ -5,8 +5,8 @@ import BQ2429x
 import smbus as smbus
 
 def main():
-	#debug_main()
-	debug_it_all()
+	debug_main()
+	#debug_it_all()
 	time.sleep(6)
 
 def debug_main():
@@ -51,7 +51,7 @@ def debug_it_all():
 	print "BQ2429x  : fault - CHRG_FAULT -- : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))
 	print "BQ2429x  : fault - BOOST_FAULT - : " + str(sensor_bq.get_faults(BQ2429x.BOOST_FAULT))
 	print "BQ2429x  : fault - WATCHDOG_FAULT: " + str(sensor_bq.get_faults(BQ2429x.WATCHDOG_FAULT))
-	
+
 if __name__ == '__main__':
 
 	# referencing the sensors
