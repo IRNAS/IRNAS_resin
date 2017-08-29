@@ -13,6 +13,8 @@
  * File description: Definitions and methods for the max1720x library
 '''
 
+# -*- coding: UTF-8 -*-
+
 import logging
 import time
 import smbus as smbus
