@@ -209,7 +209,7 @@ class MAX1720x(object):
 		try:
 			value 		= self._device.readU16(MAX1720X_STATUS_ADDR)			# read the status register
 			print bin(value)
-			bit = (value >> 4) & 1;
+			bit = (value >> 1) & 1;
 			return bit
 		except:
 			print "Couldn't connect to MAX1720"
