@@ -27,9 +27,15 @@ Python script for connecting to the MAX1720 chip and interfacing with it.
 
 ```__init__()``` - conects to the device through the I2C module
 
-```get_cell_voltage(number)``` -  gets the ***number*** cell voltage. Mostly use ***number = 1***
+```get_cell_voltage()``` -  gets the lowest cell voltage
+
+```get_max_voltage()``` - gets the max voltage the cell was on since reset
 
 ```get_current()``` - get the current running from the cells
+
+```get_avg_current()``` - get the average current consumption
+
+```get_maxmin_current()``` - get the max and minimum current since reset
 
 ```get_temperature()``` - get the current temperature
 
@@ -41,5 +47,8 @@ Python script for connecting to the MAX1720 chip and interfacing with it.
 
 ```get_TTF()``` - get the estimate time to full
 
-```get_status()``` - get the status (will be improved)
+```get_battery_absent()``` - checks if the battery is absent or not
 
+```reset_minmax_current()``` - reset the minmax values (sets the minmax register to default)
+
+```set_average_current_update_time(value)``` - sets the average current monitoring time

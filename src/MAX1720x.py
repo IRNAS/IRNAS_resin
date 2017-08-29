@@ -83,7 +83,7 @@ class MAX1720x(object):
 			return 0
 
 	# def get_maxmin_voltage(self) - gets the max voltage in mV
-	def get_maxmin_voltage(self):
+	def get_max_voltage(self):
 
 		# 20mV resolution -> register * 20mV -> register * 0.02
 		# to get mV we just do -> register * 0.02 * 1000 
@@ -108,7 +108,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
-	def get_max_current(self):
+	def get_maxmin_current(self):
 
 		# .0004mV / Rsense resolution
 		# 0.0004V / 0.010ohm resolution
@@ -229,7 +229,7 @@ class MAX1720x(object):
 			return 0
 
 	# def set_average_update_time(self, value) - set the average update of the average current register 
-	def set_average_update_time(self, value):
+	def set_average_current_update_time(self, value):
 
 		# the formula is calculated by 45 * 2^(value-7) = x seconds
 

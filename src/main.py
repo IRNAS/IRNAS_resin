@@ -9,13 +9,13 @@ def main():
 	time.sleep(6)
 
 def debug_main():
-	
+
 	print "-----------------------------------------------"
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
-	print "MAX1720x : max voltage : " + str(sensor_max.get_maxmin_voltage()) + "mV"
+	print "MAX1720x : max voltage : " + str(sensor_max.get_max_voltage()) + "mV"
 	print "MAX1720x : current : " + str(sensor_max.get_current()) + "mA"
 	print "MAX1720x : avg_current : " + str(sensor_max.get_avg_current()) + "mA"
-	print "MAX1720x : max&min_current : " + str(sensor_max.get_max_current())
+	print "MAX1720x : max&min_current : " + str(sensor_max.get_maxmin_current())
 	print "MAX1720x : temperature : " + str(sensor_max.get_temperature()) + "C"
 	print "MAX1720x : SOC : " + str(sensor_max.get_SOC()) + "%"
 	print "MAX1720x : Battery : " + str(sensor_max.get_battery_absent())
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 	sensor_max.reset_minmax_current()
 	
 	# set the update of the average current 5s
-	sensor_max.set_average_update_time(4)
+	sensor_max.set_average_current_update_time(4)
 
 	while 1:
 		main()
