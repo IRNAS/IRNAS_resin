@@ -9,6 +9,7 @@ def main():
 	time.sleep(6)
 
 def debug_main():
+	
 	print "-----------------------------------------------"
 	print "MAX1720x : cell voltage : " + str(sensor_max.get_cell_voltage()) + "mV"
 	print "MAX1720x : max voltage : " + str(sensor_max.get_maxmin_voltage()) + "mV"
