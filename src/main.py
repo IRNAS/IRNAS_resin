@@ -31,12 +31,12 @@ def debug_it_all():
 
 	print "==============================================="
 	print "MAX1720x : cell voltage -------- : " + str(sensor_max.get_cell_voltage())
-	print "MAX1720x : max voltage --------- : " + str(sensor_max.get_maxmin_voltage()) + "mV"
+	print "MAX1720x : max voltage --------- : " + str(sensor_max.get_maxmin_voltage())
 	print "MAX1720x : current ------------- : " + str(sensor_max.get_current())
-	print "MAX1720x : avg_current --------- : " + str(sensor_max.get_avg_current()) + "mA"
+	print "MAX1720x : avg_current --------- : " + str(sensor_max.get_avg_current())
 	print "MAX1720x : max&min_current ----- : " + str(sensor_max.get_max_current())
-	print "MAX1720x : temperature --------- : " + str(sensor_max.get_temperature()) + "C"
-	print "MAX1720x : SOC ----------------- : " + str(sensor_max.get_SOC()) + "%"
+	print "MAX1720x : temperature --------- : " + str(sensor_max.get_temperature()) 
+	print "MAX1720x : SOC ----------------- : " + str(sensor_max.get_SOC())
 	print "MAX1720x : capacity ------------ : " + str(sensor_max.get_capacity())
 	print "MAX1720x : TTE ----------------- : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF ----------------- : " + str(sensor_max.get_TTF())
