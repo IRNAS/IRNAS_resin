@@ -59,12 +59,12 @@ class MAX1720x(object):
 
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
-		try:						
+		'''try:						
 			value 	= self.i2c.read_word_data(MAX1720X_I2CADDR, MAX1720X_VCELL_ADDR)	# get the value dependents on the cell nu,ber
-			return float(value) * 0.078125												# to get actual voltage need to calculate
+			return str(float(value) * 0.078125)  + "mV"									# to get actual voltage need to calculate
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <----"'''
+		return "Couldn't connect to MAX1720 <----"
 
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
