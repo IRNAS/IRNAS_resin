@@ -73,6 +73,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_avg_current(self) - gets the average current
 	def get_avg_current(self):
 		try:
 			combined 	= self._device.readS16(0x0B)									# read the register			
@@ -81,6 +82,7 @@ class MAX1720x(object):
 			print "Couldn't connect to MAX1720"
 			return 0
 
+	# def get_maxmin_voltage(self) - gets the max voltage in mV
 	def get_maxmin_voltage(self):
 
 		# 20mV resolution -> register * 20mV -> register * 0.02
@@ -226,14 +228,15 @@ class MAX1720x(object):
 			print "Couldn't reset minmax current"
 			return 0
 
+	# def set_average_update_time(self, value) - set the average update of the average current register 
 	def set_average_update_time(self, value):
+
 		# the formula is calculated by 45 * 2^(value-7) = x seconds
 
 		# table of seconds
 		# 0 -> 0,35s    3 -> 2,8s    6 -> 22,5s  9  -> 3min   12 -> 24min   15 -> 3,2h
 		# 1 -> 0,703s   4 -> 5,65s   7 -> 45s    10 -> 6min   13 -> 48min
 		# 2 -> 1,40     5 -> 11,12s  8 -> 90s    11 -> 12min  14 -> 1,6h
-
 
 		try:
 			current_reg =  self._device.readU16(0x029)
