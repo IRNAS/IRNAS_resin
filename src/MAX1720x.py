@@ -196,7 +196,7 @@ class MAX1720x(object):
 			return "Couldn't connect to MAX1720 <---- ERROR"
 			
 	# def get_battery_absent(self) - checks if the battery is present
-	def get_battery_absent(self):
+	def get_battery_status(self):
 
 		# d3 -> 3rd bit -> checks if battery is here
 		# returns 0 if yes and 1 if not present

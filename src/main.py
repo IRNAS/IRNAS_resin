@@ -19,7 +19,7 @@ def debug_main():
 	print "MAX1720x : max&min_current -- : " + str(sensor_max.get_maxmin_current())
 	print "MAX1720x : temperature ------ : " + str(sensor_max.get_temperature())
 	print "MAX1720x : SOC -------------- : " + str(sensor_max.get_SOC())
-	print "MAX1720x : Battery ---------- : " + str(sensor_max.get_battery_absent())
+	print "MAX1720x : Battery ---------- : " + str(sensor_max.get_battery_status())
 	print ""
 	print "BQ2429x  : status - VSYS ---- : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x  : status - THERM_STAT: " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
@@ -31,16 +31,16 @@ def debug_it_all():
 
 	print "==============================================="
 	print "MAX1720x : cell voltage -------- : " + str(sensor_max.get_cell_voltage())
-	print "MAX1720x : max voltage --------- : " + str(sensor_max.get_maxmin_voltage())
+	print "MAX1720x : max voltage --------- : " + str(sensor_max.get_max_voltage())
 	print "MAX1720x : current ------------- : " + str(sensor_max.get_current())
 	print "MAX1720x : avg_current --------- : " + str(sensor_max.get_avg_current())
-	print "MAX1720x : max&min_current ----- : " + str(sensor_max.get_max_current())
+	print "MAX1720x : max&min_current ----- : " + str(sensor_max.get_maxmin_current())
 	print "MAX1720x : temperature --------- : " + str(sensor_max.get_temperature()) 
 	print "MAX1720x : SOC ----------------- : " + str(sensor_max.get_SOC())
 	print "MAX1720x : capacity ------------ : " + str(sensor_max.get_capacity())
 	print "MAX1720x : TTE ----------------- : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF ----------------- : " + str(sensor_max.get_TTF())
-	print "MAX1720x : Battery ------------- : " + str(sensor_max.get_battery_absent())
+	print "MAX1720x : Battery ------------- : " + str(sensor_max.get_battery_status())
 	print "" 
 	print ""
 	print "BQ2429x  : status - VSYS ------- : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))

@@ -47,7 +47,7 @@ Python script for connecting to the MAX1720 chip and interfacing with it.
 
 ```get_TTF()``` - get the estimate time to full
 
-```get_battery_absent()``` - checks if the battery is absent or not
+```get_battery_status()``` - checks if the battery is absent or not
 
 ```reset_minmax_current()``` - reset the minmax values (sets the minmax register to default)
 
