@@ -64,7 +64,7 @@ class MAX1720x(object):
 			return str(float(value) * 0.078125)  + "mV"									# to get actual voltage need to calculate
 		except:
 			return "Couldn't connect to MAX1720 <----"'''
-		return "Couldn't connect to MAX1720 <----"
+		return "Couldn't connect to MAX1720 <---- !!!!!"
 
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
