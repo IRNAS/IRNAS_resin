@@ -20,7 +20,6 @@ def debug_main():
 	print "MAX1720x : temperature ------ : " + str(sensor_max.get_temperature())
 	print "MAX1720x : SOC -------------- : " + str(sensor_max.get_SOC())
 	print "MAX1720x : Battery ---------- : " + str(sensor_max.get_battery_status())
-	print ""
 	print "BQ2429x  : status - VSYS ---- : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x  : status - THERM_STAT: " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	print "BQ2429x  : status - CHRG_STAT : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
@@ -41,15 +40,12 @@ def debug_it_all():
 	print "MAX1720x : TTE ----------------- : " + str(sensor_max.get_TTE())
 	print "MAX1720x : TTF ----------------- : " + str(sensor_max.get_TTF())
 	print "MAX1720x : Battery ------------- : " + str(sensor_max.get_battery_status())
-	print "" 
-	print ""
 	print "BQ2429x  : status - VSYS ------- : " + str(sensor_bq.get_status(BQ2429x.VSYS_STAT))
 	print "BQ2429x  : status - THERM_STAT - : " + str(sensor_bq.get_status(BQ2429x.THERM_STAT))
 	print "BQ2429x  : status - PG_STAT ---- : " + str(sensor_bq.get_status(BQ2429x.PG_STAT))
 	print "BQ2429x  : status - DPM_STAT --- : " + str(sensor_bq.get_status(BQ2429x.DPM_STAT))
 	print "BQ2429x  : status - CHRG_STAT -- : " + str(sensor_bq.get_status(BQ2429x.CHRG_STAT))
 	print "BQ2429x  : status - VBUS_STAT -- : " + str(sensor_bq.get_status(BQ2429x.VBUS_STAT))
-	print ""
 	print "BQ2429x  : fault - NTC_FAULT --- : " + str(sensor_bq.get_faults(BQ2429x.NTC_FAULT))
 	print "BQ2429x  : fault - BAT_FAULT --- : " + str(sensor_bq.get_faults(BQ2429x.BAT_FAULT))
 	print "BQ2429x  : fault - CHRG_FAULT -- : " + str(sensor_bq.get_faults(BQ2429x.CHRG_FAULT))
