@@ -59,30 +59,27 @@ class MAX1720x(object):
 
 	# def get_cell_voltage(self, number) - get the voltage on a specific voltage
 	def get_cell_voltage(self):
-		'''try:						
+		try:						
 			value 	= self.i2c.read_word_data(MAX1720X_I2CADDR, MAX1720X_VCELL_ADDR)	# get the value dependents on the cell nu,ber
 			return str(float(value) * 0.078125)  + "mV"									# to get actual voltage need to calculate
 		except:
-			return "Couldn't connect to MAX1720 <----"'''
-		return "Couldn't connect to MAX1720 <---- !!!!!"
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_current(self) - gets the current with calculation of 0.0015625 mV/Ohm
 	def get_current(self):
 		try:
 			combined 	= self._device.readS16(MAX1720X_CURENT_ADDR)					# read the current register
-			return float((combined * 0.0015625) / 0.010)								# calculate it with 0.0015625 mV/Ohm
+			return str(float((combined * 0.0015625) / 0.010))  + "mA"					# calculate it with 0.0015625 mV/Ohm
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_avg_current(self) - gets the average current
 	def get_avg_current(self):
 		try:
 			combined 	= self._device.readS16(0x0B)									# read the register			
-			return float((combined * 0.0015625) / 0.010)								# calculate it with 0.0015625 mV/Ohm
+			return str(float((combined * 0.0015625) / 0.010)) + "mA"					# calculate it with 0.0015625 mV/Ohm
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_maxmin_voltage(self) - gets the max voltage in mV
 	def get_max_voltage(self):
@@ -104,11 +101,10 @@ class MAX1720x(object):
 			# getting the real mV value
 			float_maximum = float(maximum * 0.02 * 1000)						# calculating by the formula above
 
-			return float_maximum												# return it
+			return str(float_maximum)  + "mV"										# return it
 			
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	def get_maxmin_current(self):
 
@@ -152,28 +148,25 @@ class MAX1720x(object):
 			return "Max: " + str(float_maximum)+ "   " + "Min: " + str(float_minimum)
 
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_temperature(self) - getting the chip (surroundings) temperature
 	def get_temperature(self):
 		try:
 			combined 	= self._device.readU16(MAX1720X_TEMP_ADDR)				# read the temp register
 			value 		= combined / 256.0										# divide by 256 to get real value
-			return float(value)													# return value but float
+			return str(float(value)	+ "C")										# return value but float
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_SOC(self) - the relative state of charge of the connected LiIon Polymer battery as a percentage of the full capacity w/ resolution 1/256%
 	def get_SOC(self):
 		try:
 			combined 	= self._device.readU16(MAX1720X_REPSOC_ADDR)			# read the soc register
 			value 		= combined / 256										# divide by 256 to get real value
-			return value														# return value
+			return str(value) + "%"												# return value
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_capacity(self) - RepCap or reported capacity is a filtered version of the AvCap register that prevents large jumps in the reported value caused by changes in the application such as abrupt changes in temperature or load current.
 	def get_capacity(self):
@@ -182,8 +175,7 @@ class MAX1720x(object):
 			value 		= combined * 0.005 / 0.01								# get the real value
 			return value														# return the value
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_TTE(self) - the TTE register holds the estimated time to empty for the application under present temperature and load conditions 
 	def get_TTE(self):
@@ -192,8 +184,7 @@ class MAX1720x(object):
 			value 		= combined * 5.625 										# we are calculating actual value with 5.625s
 			return value 														# return the value
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def get_TTF(self) - the TTF register holds the estimated time to full for the application under present conditions. 
 	def get_TTF(self):
@@ -202,8 +193,7 @@ class MAX1720x(object):
 			value 		= combined * 5.625										# we are calculating actual value with 5.625s
 			return value														# return the value
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 			
 	# def get_battery_absent(self) - checks if the battery is present
 	def get_battery_absent(self):
@@ -219,16 +209,14 @@ class MAX1720x(object):
 			else:
 				return "Battery present"
 		except:
-			print "Couldn't connect to MAX1720"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def reset_minmax_current(self) - reset the minmax register t defaul 0x807F
 	def reset_minmax_current(self):
 		try:
 			self.i2c.write_word_data(0x36, 0x01C, 0x807F)						# reset the minmax 
 		except:
-			print "Couldn't reset minmax current"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
 
 	# def set_average_update_time(self, value) - set the average update of the average current register 
 	def set_average_current_update_time(self, value):
@@ -256,5 +244,4 @@ class MAX1720x(object):
 				print "something went wrong"
 
 		except:
-			print "Couldn't reset minmax current"
-			return 0
+			return "Couldn't connect to MAX1720 <---- ERROR"
